@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/GreenYellow"
+    tools:context=".registration">
+
+    <TextView
+        android:id="@+id/topText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Registration"
+        android:textColor="@color/GreenMain"
+        android:textSize="60dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:hint="Name"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/LightGrey"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topText" />
+
+    <EditText
+        android:id="@+id/editSn"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:hint="E-mail"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/LightGrey"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editName" />
+
+    <RadioButton
+        android:id="@+id/male_rad_but"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:paddingLeft="10dp"
+        android:text="Male"
+        android:textColor="@color/LightGrey"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/editSn"
+        app:layout_constraintTop_toBottomOf="@id/editSn" />
+
+    <RadioButton
+        android:id="@+id/female_rad_but"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:paddingLeft="10dp"
+        android:text="Female"
+        android:textColor="@color/LightGrey"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/male_rad_but"
+        app:layout_constraintTop_toTopOf="@id/male_rad_but" />
+
+    <EditText
+        android:id="@+id/HeightEdit"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:hint="Height, cm"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/LightGrey"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/male_rad_but"
+        app:layout_constraintTop_toBottomOf="@id/male_rad_but" />
+
+    <EditText
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:hint="Weight, kg"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/LightGrey"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/HeightEdit"
+        app:layout_constraintTop_toTopOf="@id/HeightEdit" />
+
+    <Button
+        android:id="@+id/editLim"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:hint="Dietary limitations(if any)"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/LightGrey"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/HeightEdit"
+        app:layout_constraintTop_toBottomOf="@id/HeightEdit" />
+
+    <EditText
+        android:id="@+id/editPass"
+        android:layout_width="290dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/White"
+        android:hint="Password"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/LightGrey"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/male_rad_but"
+        app:layout_constraintTop_toBottomOf="@id/editLim" />
+
+    <Button
+        android:id="@+id/button_signup"
+        android:layout_width="290dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/LightOrangeMain"
+        android:text="Sign up"
+        android:textColor="@color/White"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editPass" />
+
+    <ImageView
+        android:id="@+id/ImageAcc"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="70dp"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topText" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_border_color_black_24dp"
+        app:layout_constraintLeft_toRightOf="@id/ImageAcc"
+        app:layout_constraintTop_toTopOf="@id/ImageAcc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
