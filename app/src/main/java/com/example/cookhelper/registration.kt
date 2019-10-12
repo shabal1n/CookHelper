@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.bottom_fragment.*
 
 class registration : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)

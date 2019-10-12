@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "265498323368",
+    "firebase_url": "https://cook-helper-923a5.firebaseio.com",
+    "project_id": "cook-helper-923a5",
+    "storage_bucket": "cook-helper-923a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265498323368:android:9a0c82a0c74637fa22959d",
+        "android_client_info": {
+          "package_name": "com.example.cookhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265498323368-vqa0mdiiugb5r4nr6131q0f9bqi2r54k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookhelper",
+            "certificate_hash": "7e63890ba7c65faec22da1e8621c54e74ac1288c"
+          }
+        },
+        {
+          "client_id": "265498323368-4ei45nu1o15eev6uiff0hdd924e6qd5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvVGTWNsVXcGpJx9A9JksOAhwmZdNwSYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265498323368-4ei45nu1o15eev6uiff0hdd924e6qd5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,9 +6,12 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, registration::class.java))
         }
         proceed.setOnClickListener {
-            startActivity(Intent(this, BottomNavigation::class.java))
+            startActivity(Intent(this@MainActivity,BottomNavigation::class.java))
         }
     }
 
