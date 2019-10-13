@@ -2,21 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_history"
-        android:icon="@drawable/ic_history_black_24dp"
+        android:id="@+id/nav_recipes"
         android:iconTint="@color/GreenMain"
-        android:title="History"/>
-
+        android:icon="@drawable/ic_room_service_black_24dp"
+        android:title="Recipes"/>
     <item
         android:id="@+id/nav_products"
         android:icon="@drawable/ic_kitchen_black_24dp"
         android:iconTint="@color/GreenMain"
         android:title="Products"/>
     <item
-        android:id="@+id/nav_recipes"
+        android:id="@+id/nav_history"
+        android:icon="@drawable/ic_history_black_24dp"
         android:iconTint="@color/GreenMain"
-        android:icon="@drawable/ic_room_service_black_24dp"
-        android:title="Recipes"/>
+        android:title="History"/>
     <item
         android:id="@+id/nav_profile"
         android:iconTint="@color/GreenMain"
