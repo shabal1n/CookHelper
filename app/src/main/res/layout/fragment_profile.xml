@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/circle_layout"
+    android:layout_height="300dp"
+    tools:context=".navigation.profile.ProfileFragment">
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/circular_layer_dash_inner" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment profile" />
+    <ProgressBar
+        android:id="@+id/main_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="226dp"
+        android:layout_height="226dp"
+        android:layout_centerInParent="true"
+        android:max="100"
+        android:progress="80"
+        android:progressDrawable="@drawable/circular_layer_dash_filler"
+        android:visibility="visible" />
 
-</FrameLayout>
+</LinearLayout>

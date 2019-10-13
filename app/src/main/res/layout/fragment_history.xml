@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HistoryFragment">
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/circle_layout"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <ProgressBar
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/circular_layer_dash_inner" />
+
+    <ProgressBar
+        app:layout_constraintTop_toTopOf="@id/progressBar2"
+        app:layout_constraintLeft_toLeftOf="@id/progressBar2"
+        android:id="@+id/main_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="226dp"
+        android:layout_height="226dp"
+        android:layout_centerInParent="true"
+        android:max="100"
+        android:progress="80"
+        android:progressDrawable="@drawable/circular_layer_dash_filler"
+        android:visibility="visible"/>
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment history" />
+        android:id="@+id/kcal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/progressBar2"
+        app:layout_constraintLeft_toLeftOf="@id/progressBar2"
+        app:layout_constraintRight_toRightOf="@id/progressBar2"
+        app:layout_constraintBottom_toBottomOf="@id/progressBar2"
+        android:text="2710"
+        android:textSize="30dp"
+        android:shadowColor="#FF8000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:textStyle="bold"
+        android:shadowRadius="10"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/kcal"
+        app:layout_constraintTop_toBottomOf="@id/kcal"
+        app:layout_constraintRight_toRightOf="@id/kcal"
+        android:text="kCal"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:shadowColor="#FF8000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="10"
+        android:textColor="#FFFFFF"/>
 
-</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

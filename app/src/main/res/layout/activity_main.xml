@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/GreenYellow"
+    android:background="@drawable/login_b"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/proceed"
         android:layout_width="270dp"
         android:layout_height="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/round_button"
-        android:backgroundTint="@color/LightOrangeMain"
+        android:backgroundTint="@color/GreenBlack"
         android:onClick="toastMe"
         android:text="Login"
         android:textColor="@color/White"
@@ -28,11 +28,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_marginRight="85dp"
+        android:paddingRight="10dp"
+        android:fontFamily="@font/clicker_script"
         android:text="Cook"
-        android:textColor="@color/GreenMain"
+        android:textColor="@color/GreenBlack"
         android:textSize="68dp"
         android:textStyle="bold|italic"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,12 +42,14 @@
         android:id="@+id/helper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="65dp"
+        android:fontFamily="@font/clicker_script"
         android:text="Helper"
-        android:textColor="@color/GreenMain"
+        android:paddingRight="10dp"
+        android:textColor="@color/GreenBlack"
         android:textSize="68dp"
         android:textStyle="bold|italic"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cook" />
 
     <EditText
@@ -55,6 +59,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:layout_marginLeft="35dp"
         android:hint="Password"
         android:paddingLeft="20dp"
         android:textColor="@color/LightGrey"
@@ -67,9 +72,10 @@
         android:id="@+id/email_edit"
         android:layout_width="270dp"
         android:layout_height="45dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:layout_marginLeft="35dp"
         android:hint="E-mail"
         android:paddingLeft="20dp"
         android:textColorHint="@color/LightGrey"
@@ -83,13 +89,16 @@
         android:src="@drawable/ic_lock_open_black_24dp"
         app:layout_constraintBottom_toBottomOf="@id/password_edit"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/password_edit"
         app:layout_constraintRight_toLeftOf="@id/password_edit" />
 
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_email_black_24dp"
         app:layout_constraintBottom_toBottomOf="@id/email_edit"
+        app:layout_constraintTop_toTopOf="@id/email_edit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/email_edit" />
 
@@ -97,22 +106,16 @@
         android:id="@+id/textreg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:text="New user? Register now"
         android:textSize="22dp"
         android:textStyle="bold"
+        android:textColor="@color/White"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/proceed" />
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/logo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

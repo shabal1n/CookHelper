@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="BlueBackgroundMain">#85dcb0</color>
-    <color name="GreenMain">#41b3a3</color>
+    <color name="GreenMain">#7CD5AC</color>
+    <color name="GreenButtons">#41CD8C</color>
+    <color name="OrangeLifeSum">#FF903C</color>
     <color name="LightOrangeMain">#e8a87c</color>
     <color name="LightRedMain">#e27d60</color>
     <color name="DarkPinkMain">#c38d9e</color>
