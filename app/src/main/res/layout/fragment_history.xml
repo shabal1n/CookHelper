@@ -76,7 +76,8 @@
         android:layout_height="match_parent">
 <CalendarView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
-        //доделать свайп-календарь (пример в загрузках)
+    android:layout_height="match_parent"
+    android:minDate=""/>
+        //TODO: swipe-calendar
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
