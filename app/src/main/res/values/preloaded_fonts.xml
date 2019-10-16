@@ -2,5 +2,6 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/clicker_script</item>
+        <item>@font/yeseva_one</item>
     </array>
 </resources>

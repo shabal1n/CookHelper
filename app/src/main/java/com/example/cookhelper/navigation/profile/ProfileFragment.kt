@@ -1,16 +1,19 @@
 package com.example.cookhelper.navigation.profile
 
 
+import android.R.color
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.cookhelper.R
 
-/**
- * A simple [Fragment] subclass.
- */
+
+
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(
