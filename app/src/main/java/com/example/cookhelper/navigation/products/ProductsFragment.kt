@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.cookhelper.R
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class ProductsFragment : Fragment() {
 
     override fun onCreateView(

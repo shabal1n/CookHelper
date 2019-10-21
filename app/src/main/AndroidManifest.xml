@@ -12,8 +12,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".history_fragment2"
+            android:label="@string/title_activity_history_fragment2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".navigation.BottomNavigation"
-            android:label="@string/title_activity_bottom_navigation"/>
+            android:label="@string/title_activity_bottom_navigation" />
         <activity android:name=".registration" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,17 +1,9 @@
 package com.example.cookhelper
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cookhelper.dummy.DummyContent
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_registration.*
-import kotlinx.android.synthetic.main.bottom_fragment.*
 
 class registration : AppCompatActivity() {
 

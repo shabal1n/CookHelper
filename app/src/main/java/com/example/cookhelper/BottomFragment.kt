@@ -11,11 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.cookhelper.dummy.DummyContent
-import com.example.cookhelper.dummy.DummyContent.DummyItem
 
 class BottomFragment : Fragment() {
 
-    // TODO: Customize parameters
+
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
@@ -34,7 +33,7 @@ class BottomFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.bottom_fragment_list, container, false)
 
-        // Set the adapter
+
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = when {
@@ -63,15 +62,13 @@ class BottomFragment : Fragment() {
 
 
     interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: DummyItem)
+        fun onListFragmentInteraction(item: DummyContent.DummyItem)
     }
 
     companion object {
 
-        // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
             BottomFragment().apply {
