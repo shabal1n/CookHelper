@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.example.cookhelper.R
+import com.example.cookhelper.navigation.history.HistoryFragment
 import com.example.cookhelper.navigation.products.ProductsFragment
-import com.example.cookhelper.navigation.profile.HistoryFragment
 import com.example.cookhelper.navigation.profile.ProfileFragment
 import com.example.cookhelper.navigation.recipes.RecipesFragment
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*

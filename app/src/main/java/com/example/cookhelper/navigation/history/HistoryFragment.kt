@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
-
 
 
 class HistoryFragment : Fragment() {
@@ -39,18 +37,19 @@ class HistoryFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = HistoryFragmentAdapter(List<HistoryItem>(), listener)
+               // adapter = HistoryFragmentAdapter(List<HistoryItem>(), listener)
             }
         }
         return view
     }
+    
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is HistoryFragmentAdapter.OnListFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
         }
     }
 

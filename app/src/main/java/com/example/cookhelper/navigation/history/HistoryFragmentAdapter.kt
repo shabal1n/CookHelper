@@ -26,7 +26,6 @@ class HistoryFragmentAdapter(
     override fun getItemViewType(position: Int) = when(mValues[position].type) {
         HistoryType.DATE -> R.layout.fragment_history_date_item
         HistoryType.INFO ->R.layout.fragment_history_action_item
-        else -> throw RuntimeException("Unknown position: $position. You should modify getItemViewType")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder{
