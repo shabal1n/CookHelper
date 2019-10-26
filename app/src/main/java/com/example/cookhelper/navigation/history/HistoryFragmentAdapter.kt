@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
-import kotlinx.android.synthetic.main.bottom_fragment_list.view.*
+import com.example.cookhelper.extensions.loadImage
+import kotlinx.android.synthetic.main.fragment_history_action_item.view.*
+import kotlinx.android.synthetic.main.fragment_history_date_item.view.*
 import java.lang.RuntimeException
 
 class HistoryFragmentAdapter(
@@ -46,7 +48,9 @@ class HistoryFragmentAdapter(
 
     inner class HistoryTextViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         fun bind(historyItem: HistoryItem) {
-            mView.title.text = historyItem.content
+            mView.header_history.text = historyItem.content
+            mView.history_description.text = historyItem.details
+            mView.history_image.loadImage(mView.toString(), mView.context , R.drawable.ic_kitchen_black_24dp)
 
         }
 
@@ -60,7 +64,7 @@ class HistoryFragmentAdapter(
 
     inner class HeaderDateViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         fun bind(historyItem: HistoryItem) {
-            mView.title.text = historyItem.content
+            mView.data_view.text = historyItem.content
         }
 
     }

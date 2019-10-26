@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 29
@@ -44,6 +45,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.9.0"
     testImplementation 'junit:junit:4.12'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'

@@ -2,22 +2,62 @@ package com.example.cookhelper.navigation.products
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cookhelper.R
+import kotlinx.android.synthetic.main.fragment_products.*
 
 
-class ProductsFragment : Fragment() {
+class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInteractionListener {
+
+    private var columnCount = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            columnCount = it.getInt(ARG_COLUMN_COUNT)
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false)
+        val view = inflater.inflate(R.layout.fragment_products, container, false)
+        return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recycler_products.layoutManager = when {
+            columnCount <= 1 -> LinearLayoutManager(context)
+            else -> GridLayoutManager(context, columnCount)
+        }
+        val mockList = arrayListOf<ProductsItem>()
+        mockList.add(ProductsItem("1", "Carrot", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("2", "Mushrooms", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("3", "Potatoes", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("4", "Onion", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("5", "Cucumber", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("6", "Tomato", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("7", "Garlic", "vegetable", ProductsType.INFO))
+        mockList.add(ProductsItem("7", "Orange", "fruit", ProductsType.INFO))
+        mockList.add(ProductsItem("7", "Apple", "fruit", ProductsType.INFO))
+        recycler_products.adapter = ProductsFragmentAdapter(mockList, this)
 
+    }
+
+    override fun onListFragmentInteraction(item: ProductsItem) {
+        Toast.makeText(this.context, item.content, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        const val ARG_COLUMN_COUNT = "column-count"
+    }
 }
