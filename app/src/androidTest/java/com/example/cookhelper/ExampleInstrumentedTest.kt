@@ -1,3 +1,5 @@
+@file:Suppress("Annotator")
+
 package com.example.cookhelper
 
 import androidx.test.platform.app.InstrumentationRegistry
