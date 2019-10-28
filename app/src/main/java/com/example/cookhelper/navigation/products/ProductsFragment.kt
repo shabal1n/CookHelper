@@ -29,8 +29,7 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_products, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_products, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,15 +39,79 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
             else -> GridLayoutManager(context, columnCount)
         }
         val mockList = arrayListOf<ProductsItem>()
-        mockList.add(ProductsItem("1", "Carrot", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("2", "Mushrooms", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("3", "Potatoes", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("4", "Onion", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("5", "Cucumber", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("6", "Tomato", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("7", "Garlic", "vegetable", ProductsType.INFO))
-        mockList.add(ProductsItem("7", "Orange", "fruit", ProductsType.INFO))
-        mockList.add(ProductsItem("7", "Apple", "fruit", ProductsType.INFO))
+        mockList.add(
+            ProductsItem(
+                "1",
+                "Carrot",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem
+            (
+                "2",
+                "Mushrooms",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "3",
+                "Potatoes",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "4",
+                "Onion",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "5",
+                "Cucumber",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "6",
+                "Tomato",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "7",
+                "Garlic",
+                "vegetable",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "7",
+                "Orange",
+                "fruit",
+                ProductsType.INFO
+            )
+        )
+        mockList.add(
+            ProductsItem(
+                "7",
+                "Apple",
+                "fruit",
+                ProductsType.INFO
+            )
+        )
         recycler_products.adapter = ProductsFragmentAdapter(mockList, this)
 
     }

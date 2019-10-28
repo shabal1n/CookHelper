@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
-class ProductsActivity : AppCompatActivity() {
+class RecipesMainFragment : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_recipes)
+        setContentView(R.layout.activity_main)
 
         initRecycler()
     }
@@ -22,9 +22,9 @@ class ProductsActivity : AppCompatActivity() {
         recyclerView = rv_parent
 
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@ProductsActivity,
+            layoutManager = LinearLayoutManager(this@RecipesMainFragment,
                 LinearLayout.VERTICAL, false)
-            adapter = ParentAdapter(ParentContent
+            adapter = ParentAdapter(ParentDataFactory
                 .getParents(40))
         }
 

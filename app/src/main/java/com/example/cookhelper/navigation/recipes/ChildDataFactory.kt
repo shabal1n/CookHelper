@@ -3,11 +3,11 @@ package com.example.cookhelper.navigation.recipes
 import com.example.cookhelper.R
 import java.util.*
 
-object ChildContent{
+object ChildDataFactory{
 
     private val random = Random()
 
-    private val titles =  arrayListOf( "Lagman", "Teriyaki shicken", "Pasta", "Pizza", "Burger")
+    private val titles =  arrayListOf( "Pasta", "Pizza", "Lagman", "Burger", "French fries")
 
     private fun randomTitle() : String{
         val index = random.nextInt(titles.size)

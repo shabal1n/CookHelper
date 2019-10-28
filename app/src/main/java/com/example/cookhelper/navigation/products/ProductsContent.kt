@@ -1,6 +1,5 @@
 package com.example.cookhelper.navigation.products
 
-
 data class ProductsItem(
     val id: String,
     val content: String,
