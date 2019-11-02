@@ -49,7 +49,7 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
         )
         mockList.add(
             ProductsItem
-            (
+                (
                 "2",
                 "Mushrooms",
                 "vegetable",

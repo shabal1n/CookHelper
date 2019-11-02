@@ -27,7 +27,7 @@ class ParentAdapter(private val parents : List<ParentModel>) :    RecyclerView.A
                                   position: Int) {
         val parent = parents[position]
         holder.textView.text = parent.title
-        val childLayoutManager = LinearLayoutManager(holder.recyclerView.context, LinearLayout.HORIZONTAL, false)
+        val childLayoutManager = LinearLayoutManager(holder.recyclerView.context, RecyclerView.HORIZONTAL, false)
         childLayoutManager.initialPrefetchItemCount = 4
         holder.recyclerView.apply {
             layoutManager = childLayoutManager

@@ -6,15 +6,15 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.cookhelper.R
 import com.example.cookhelper.navigation.history.HistoryFragment
 import com.example.cookhelper.navigation.products.ProductsFragment
-import com.example.cookhelper.navigation.profile.ProfileFragment
-import com.example.cookhelper.navigation.recipes.RecipesFragment
+import com.example.cookhelper.navigation.recipes.FragmentRecipes
 import kotlinx.android.synthetic.main.activity_bottom_navigation.*
+import com.example.cookhelper.navigation.profile.ProfileFragment
 
 class BottomNavigation : AppCompatActivity() {
 
     lateinit var historyFragment: HistoryFragment
     lateinit var productsFragment: ProductsFragment
-    lateinit var recipesFragment: RecipesFragment
+    lateinit var recipesFragment: FragmentRecipes
     lateinit var profileFragment: ProfileFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class BottomNavigation : AppCompatActivity() {
         setContentView(R.layout.activity_bottom_navigation)
 
 
-        recipesFragment = RecipesFragment()
+        recipesFragment = FragmentRecipes()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, recipesFragment)
@@ -58,9 +58,9 @@ class BottomNavigation : AppCompatActivity() {
                 }
                 R.id.nav_recipes -> {
                     recipesFragment = if(supportFragmentManager.findFragmentByTag("3") != null){
-                        supportFragmentManager.findFragmentByTag("3") as RecipesFragment
+                        supportFragmentManager.findFragmentByTag("3") as FragmentRecipes
                     }else{
-                        RecipesFragment()
+                        FragmentRecipes()
                     }
                     supportFragmentManager
                         .beginTransaction()

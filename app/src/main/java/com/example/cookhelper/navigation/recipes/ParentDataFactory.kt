@@ -16,11 +16,10 @@ object ParentDataFactory{
         return ChildDataFactory.getChildren(20)
     }
 
-    fun getParents(count : Int) : List<ParentModel>{
+    fun getParents() : List<ParentModel>{
         val parents = mutableListOf<ParentModel>()
-        repeat(count){
-            val parent = ParentModel(randomTitle(), randomChildren())
-            parents.add(parent)
+        titles.forEach {
+            parents.add(ParentModel(it, randomChildren()))
         }
         return parents
     }
