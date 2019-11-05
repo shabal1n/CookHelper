@@ -1,6 +1,7 @@
 package com.example.cookhelper.navigation.products
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cookhelper.navigation.add_products.AddProductsActivity
 import com.example.cookhelper.R
 import kotlinx.android.synthetic.main.fragment_products.*
 
@@ -34,6 +36,12 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        add_products_button.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, AddProductsActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
         recycler_products.layoutManager = when {
             columnCount <= 1 -> LinearLayoutManager(context)
             else -> GridLayoutManager(context, columnCount)
@@ -44,7 +52,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "1",
                 "Carrot",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -53,7 +62,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "2",
                 "Mushrooms",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -61,7 +71,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "3",
                 "Potatoes",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -69,7 +80,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "4",
                 "Onion",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -77,7 +89,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "5",
                 "Cucumber",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -85,7 +98,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "6",
                 "Tomato",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -93,7 +107,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Garlic",
                 "vegetable",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -101,7 +116,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Orange",
                 "fruit",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         mockList.add(
@@ -109,7 +125,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Apple",
                 "fruit",
-                ProductsType.INFO
+                ProductsType.INFO,
+                "200 g."
             )
         )
         recycler_products.adapter = ProductsFragmentAdapter(mockList, this)

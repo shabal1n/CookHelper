@@ -4,7 +4,8 @@ data class ProductsItem(
     val id: String,
     val content: String,
     val details: String,
-    val type: ProductsType
+    val type: ProductsType,
+    val quantity: String
 ) {
     override fun toString(): String = content
 }

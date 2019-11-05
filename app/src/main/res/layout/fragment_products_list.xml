@@ -28,5 +28,5 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="@id/products_name"
             app:layout_constraintTop_toBottomOf="@id/products_name"
-            android:text="descrition"/>
+            android:text="description"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
