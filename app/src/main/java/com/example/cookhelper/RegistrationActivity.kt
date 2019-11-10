@@ -12,8 +12,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.cookhelper.dummy.DummyContent
+import com.example.cookhelper.entities.User
 import com.example.cookhelper.extensions.loadImage
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_registration.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,14 +24,17 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
-    val viewModel: RegistrationViewModel by viewModel()
+    private val viewModel: RegistrationViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+
         auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
 
         editLim.setOnClickListener {
             val list = ArrayList<DummyContent.DummyItem>()
@@ -47,6 +53,7 @@ class RegistrationActivity : AppCompatActivity() {
         }
         button_signup.setOnClickListener {
             signUpUser()
+            writeNewUser()
         }
 
         imageAcc.setOnClickListener {
@@ -56,7 +63,31 @@ class RegistrationActivity : AppCompatActivity() {
         initObservers()
     }
 
-    fun signUpUser() {
+    private fun writeNewUser() {
+            if (editName.text.toString().isEmpty()) {
+                editName.error = "Please enter your name"
+                editName.requestFocus()
+                return
+            }
+            if (edit_weight.text.toString().isEmpty()) {
+                edit_weight.error = "Please enter your weight"
+                edit_weight.requestFocus()
+                return
+            }
+            if (heightEdit.text.toString().isEmpty()) {
+                heightEdit.error = "Please enter your height"
+                heightEdit.requestFocus()
+                return
+            }
+        val name = editName.text.toString()
+        val weight = edit_weight.text.toString()
+        val height = heightEdit.text.toString()
+
+            val user = User(name, weight, height)
+            database.child("users").child(name).setValue(user)
+    }
+
+    private fun signUpUser() {
         if (editSn.text.toString().isEmpty()) {
             editSn.error = "Please enter email"
             editSn.requestFocus()
@@ -132,7 +163,7 @@ class RegistrationActivity : AppCompatActivity() {
         })
     }
 
-    val permissions = arrayOf(
+    private val permissions = arrayOf(
         Manifest.permission.CAMERA,
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE

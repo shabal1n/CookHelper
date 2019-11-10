@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="@id/male_rad_but" />
 
     <EditText
-        android:id="@+id/HeightEdit"
+        android:id="@+id/heightEdit"
         android:layout_width="120dp"
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
@@ -76,6 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/male_rad_but" />
 
     <EditText
+        android:id="@+id/edit_weight"
         android:layout_width="120dp"
         android:layout_height="45dp"
         android:layout_marginLeft="10dp"
@@ -84,8 +85,8 @@
         android:hint="Weight, kg"
         android:paddingLeft="10dp"
         android:textColorHint="@color/LightGrey"
-        app:layout_constraintLeft_toRightOf="@id/HeightEdit"
-        app:layout_constraintTop_toTopOf="@id/HeightEdit" />
+        app:layout_constraintLeft_toRightOf="@id/heightEdit"
+        app:layout_constraintTop_toTopOf="@id/heightEdit" />
 
     <Button
         android:id="@+id/editLim"
@@ -97,8 +98,8 @@
         android:hint="Dietary limitations"
         android:paddingLeft="20dp"
         android:textColorHint="@color/LightGrey"
-        app:layout_constraintLeft_toLeftOf="@id/HeightEdit"
-        app:layout_constraintTop_toBottomOf="@id/HeightEdit" />
+        app:layout_constraintLeft_toLeftOf="@id/heightEdit"
+        app:layout_constraintTop_toBottomOf="@id/heightEdit" />
 
     <EditText
         android:id="@+id/editPass"

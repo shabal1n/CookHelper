@@ -1,72 +1,90 @@
 package com.example.cookhelper.navigation.add_products
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
-import com.example.cookhelper.extensions.loadImage
-import com.example.cookhelper.navigation.products.ProductsItem
-import com.example.cookhelper.navigation.products.ProductsType
-import kotlinx.android.synthetic.main.add_new_products_list.view.*
 
+class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapter.Companion.Holder>, Filterable {
 
-class AddProductsActivityAdapter(
-    private val mValues: List<ProductsItem>,
-    private val mListener: OnListFragmentInteractionListener?
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val mOnClickListener: View.OnClickListener
+    var list: MutableList<ProductsAdd>
+    var listFiltered: MutableList<ProductsAdd>
+    var con: Context
+    lateinit var rv: View
 
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as ProductsItem
-            mListener?.onListFragmentInteraction(item)
-        }
+    constructor(list: MutableList<ProductsAdd>, con: Context) : super() {
+        this.list = list
+        this.listFiltered = list
+        this.con = con
     }
 
-    override fun getItemViewType(position: Int) = when (mValues[position].type) {
-        ProductsType.INFO -> R.layout.add_new_products_list
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
-        return when (viewType) {
-            R.layout.add_new_products_list -> AddProduct(view)
-            else -> throw RuntimeException("Unknown viewType: $viewType. You should modify onCreateViewHolder")
-        }
-    }
-
-    override fun getItemCount(): Int = mValues.size
-
-    inner class AddProduct(val mView: View) : RecyclerView.ViewHolder(mView) {
-        fun bind(productItem: ProductsItem) {
-            mView.product_name.text = productItem.content
-            mView.product_description.text = productItem.details
-            mView.image_of_products.loadImage(
-                mView.toString(),
-                mView.context,
-                R.drawable.ic_free_breakfast_black_24dp
-            )
-
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        var ct: ProductsAdd = listFiltered[position]
+        holder.productName.setText(ct.name)
+        rv.setOnClickListener {
+            Toast.makeText(con, holder.productName.text.toString(), Toast.LENGTH_SHORT).show()
         }
 
-        init {
-            mView.setOnClickListener {
-                mListener?.onListFragmentInteraction(mValues[adapterPosition])
+    }
+
+    companion object {
+        class Holder : RecyclerView.ViewHolder {
+
+            var productName: TextView
+
+            constructor(rv: View) : super(rv) {
+                productName = rv.findViewById(R.id.product_name)
             }
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is AddProduct -> holder.bind(mValues[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+        rv = LayoutInflater.from(parent.context)
+            .inflate(R.layout.add_new_products_list, parent, false)
+        var holder: Holder = Holder(rv)
+        return holder
+    }
+
+    override fun getItemCount(): Int {
+
+
+        return listFiltered.size
+    }
+
+    override fun getFilter(): Filter {
+
+        return object: Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                var charString : String = constraint.toString()
+                if (charString.isEmpty()) {
+                    listFiltered = list
+                } else {
+                    var filteredList: MutableList<ProductsAdd> = mutableListOf()
+                    for(s: ProductsAdd in list) {
+                        if (s.name.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(s)
+                        }
+                    }
+                    listFiltered = filteredList
+                }
+                var filterResults: FilterResults = FilterResults()
+                filterResults.values = listFiltered
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                listFiltered = results!!.values as MutableList<ProductsAdd>
+                notifyDataSetChanged()
+            }
 
         }
-
     }
 
-    interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: ProductsItem)
-    }
 }
