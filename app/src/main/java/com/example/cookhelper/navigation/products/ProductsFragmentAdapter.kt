@@ -37,7 +37,7 @@ class ProductsFragmentAdapter(
 
     override fun getItemCount(): Int = mValues.size
 
-    inner class ProductNameHeader(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ProductNameHeader(private val mView: View) : RecyclerView.ViewHolder(mView) {
         fun bind(productItem: ProductsItem) {
             mView.products_name.text = productItem.content
             mView.products_description.text = productItem.details

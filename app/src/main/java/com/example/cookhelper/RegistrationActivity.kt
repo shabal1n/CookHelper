@@ -79,12 +79,13 @@ class RegistrationActivity : AppCompatActivity() {
                 heightEdit.requestFocus()
                 return
             }
+
         val name = editName.text.toString()
         val weight = edit_weight.text.toString()
         val height = heightEdit.text.toString()
 
-            val user = User(name, weight, height)
-            database.child("users").child(name).setValue(user)
+            val finalUser = User(name, weight, height)
+            database.child("users").child(name).setValue(finalUser)
     }
 
     private fun signUpUser() {
