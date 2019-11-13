@@ -4,23 +4,13 @@ data class ProductsItem(
     val id: String,
     var content: String,
     val details: String,
+    val image: Int,
     val type: ProductsType,
     val quantity: String
 ) {
     override fun toString(): String = content
 
-
-    fun getProductName(): String {
-        return content
+    enum class ProductsType {
+        INFO
     }
-
-    fun setProductsName(content: String) {
-        this.content = content
-    }
-}
-class ProductsContent{
-
-}
-enum class ProductsType {
-    INFO
 }

@@ -52,7 +52,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "1",
                 "Carrot",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.carrot,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -62,7 +63,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "2",
                 "Mushrooms",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.shrooms,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -71,7 +73,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "3",
                 "Potatoes",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.potato,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -80,7 +83,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "4",
                 "Onion",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.onion,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -89,7 +93,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "5",
                 "Cucumber",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.cucmber,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -98,7 +103,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "6",
                 "Tomato",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.tomato,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -107,7 +113,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Garlic",
                 "vegetable",
-                ProductsType.INFO,
+                R.drawable.garlic,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -116,7 +123,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Orange",
                 "fruit",
-                ProductsType.INFO,
+                R.drawable.orange,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )
@@ -125,7 +133,8 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Apple",
                 "fruit",
-                ProductsType.INFO,
+                R.drawable.apple,
+                ProductsItem.ProductsType.INFO,
                 "200 g."
             )
         )

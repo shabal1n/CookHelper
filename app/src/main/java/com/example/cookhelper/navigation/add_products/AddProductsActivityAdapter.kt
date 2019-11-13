@@ -27,7 +27,7 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         var ct: ProductsAdd = listFiltered[position]
-        holder.productName.setText(ct.name)
+        holder.productName.text = ct.name
         rv.setOnClickListener {
             Toast.makeText(con, holder.productName.text.toString(), Toast.LENGTH_SHORT).show()
         }

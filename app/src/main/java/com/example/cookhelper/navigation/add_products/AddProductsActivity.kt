@@ -42,7 +42,7 @@ class AddProductsActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         recyclerview.layoutManager = layoutManager
         recyclerview.setHasFixedSize(true)
-        var count : Int  = 0
+        var count = 0
         for (name: String in content) {
             var c =  ProductsAdd(name)
             list.add(c)
