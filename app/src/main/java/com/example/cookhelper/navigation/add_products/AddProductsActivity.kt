@@ -12,22 +12,25 @@ import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
+import com.example.cookhelper.navigation.products.ProductsItem
+import com.example.cookhelper.navigation.recipes.RecipesItem
 
 class AddProductsActivity : AppCompatActivity() {
 
     lateinit var recyclerview: RecyclerView
-    var list: MutableList<ProductsAdd> = mutableListOf()
+    var list: MutableList<AddProductsItem> = mutableListOf()
+    val repository = ProductsAddItemRepository()
     lateinit var layoutManager: RecyclerView.LayoutManager
     var content: Array<String> = arrayOf(
         "Potato",
         "Tomato",
         "Onion",
-        "cucumber",
-        "strawberry",
-        "peach",
-        "melon",
-        "bread",
-        "cheese"
+        "Cucumber",
+        "Strawberry",
+        "Peach",
+        "Melon",
+        "Bread",
+        "Cheese"
     )
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var adapter: AddProductsActivityAdapter
@@ -43,9 +46,8 @@ class AddProductsActivity : AppCompatActivity() {
         recyclerview.layoutManager = layoutManager
         recyclerview.setHasFixedSize(true)
         var count = 0
-        for (name: String in content) {
-            var c =  ProductsAdd(name)
-            list.add(c)
+        for(product: AddProductsItem in repository.products) {
+            list.add(product)
             count++
         }
         adapter = AddProductsActivityAdapter(list, this)

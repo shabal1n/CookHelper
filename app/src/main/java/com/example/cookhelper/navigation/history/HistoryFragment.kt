@@ -41,13 +41,41 @@ class HistoryFragment : Fragment(), HistoryFragmentAdapter.OnListFragmentInterac
             else -> GridLayoutManager(context, columnCount)
         }
         val mockList = arrayListOf<HistoryItem>()
-        mockList.add(HistoryItem("1","September 12, 2019", "123", HistoryType.DATE))
-        mockList.add(HistoryItem("1","Mushrooms", "Handpicked in Almaty forests", HistoryType.INFO))
-        mockList.add(HistoryItem("1","Omelette", "Self-made by wife", HistoryType.INFO))
-        mockList.add(HistoryItem("1","Soup", "From true Chinese restaurant", HistoryType.INFO))
-        mockList.add(HistoryItem("1","September 13, 2019", "123", HistoryType.DATE))
-        mockList.add(HistoryItem("1","Croissant", "Bought in Paris yesterday", HistoryType.INFO))
-        mockList.add(HistoryItem("1","Omelette", "Self-made by wife", HistoryType.INFO))
+        mockList.add(HistoryItem(1,
+            "September 12, 2019",
+            "123",
+            HistoryType.DATE,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
+        mockList.add(HistoryItem(2,
+            "Mushrooms",
+            "Handpicked in Almaty forests",
+            HistoryType.INFO,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
+        mockList.add(HistoryItem(3,
+            "Omelette",
+            "Self-made by wife",
+            HistoryType.INFO,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
+        mockList.add(HistoryItem(4,
+            "Soup",
+            "From true Chinese restaurant",
+            HistoryType.INFO,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
+        mockList.add(HistoryItem(5,
+            "September 13, 2019",
+            "123",
+            HistoryType.DATE,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
+        mockList.add(HistoryItem(6,
+            "Croissant",
+            "Bought in Paris yesterday",
+            HistoryType.INFO,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
+        mockList.add(HistoryItem(7,
+            "Omelette",
+            "Self-made by wife",
+            HistoryType.INFO,
+            "https://assets3.thrillist.com/v1/image/2797371/size/tmg-article_default_mobile.jpg"))
         recyclerView.adapter = HistoryFragmentAdapter(mockList, this)
     }
 

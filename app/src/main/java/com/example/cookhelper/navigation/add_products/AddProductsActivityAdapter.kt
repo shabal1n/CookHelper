@@ -13,12 +13,12 @@ import com.example.cookhelper.R
 
 class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapter.Companion.Holder>, Filterable {
 
-    var list: MutableList<ProductsAdd>
-    var listFiltered: MutableList<ProductsAdd>
+    var list: MutableList<AddProductsItem>
+    var listFiltered: MutableList<AddProductsItem>
     var con: Context
     lateinit var rv: View
 
-    constructor(list: MutableList<ProductsAdd>, con: Context) : super() {
+    constructor(list: MutableList<AddProductsItem>, con: Context) : super() {
         this.list = list
         this.listFiltered = list
         this.con = con
@@ -26,8 +26,8 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        var ct: ProductsAdd = listFiltered[position]
-        holder.productName.text = ct.name
+        var ct: AddProductsItem = listFiltered[position]
+        holder.productName.text = ct.content
         rv.setOnClickListener {
             Toast.makeText(con, holder.productName.text.toString(), Toast.LENGTH_SHORT).show()
         }
@@ -66,9 +66,9 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
                 if (charString.isEmpty()) {
                     listFiltered = list
                 } else {
-                    var filteredList: MutableList<ProductsAdd> = mutableListOf()
-                    for(s: ProductsAdd in list) {
-                        if (s.name.toLowerCase().contains(charString.toLowerCase())) {
+                    var filteredList: MutableList<AddProductsItem> = mutableListOf()
+                    for(s: AddProductsItem in list) {
+                        if (s.content.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(s)
                         }
                     }
@@ -80,7 +80,7 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                listFiltered = results!!.values as MutableList<ProductsAdd>
+                listFiltered = results!!.values as MutableList<AddProductsItem>
                 notifyDataSetChanged()
             }
 

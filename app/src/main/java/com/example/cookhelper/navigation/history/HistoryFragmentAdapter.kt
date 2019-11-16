@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import com.example.cookhelper.extensions.loadImage
 import kotlinx.android.synthetic.main.fragment_history_action_item.view.*
 import kotlinx.android.synthetic.main.fragment_history_date_item.view.*
+import kotlinx.coroutines.NonCancellable.children
 import java.lang.RuntimeException
 
 class HistoryFragmentAdapter(
@@ -46,11 +48,13 @@ class HistoryFragmentAdapter(
 
 
 
-    inner class HistoryTextViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class HistoryTextViewHolder(private val mView: View) : RecyclerView.ViewHolder(mView) {
         fun bind(historyItem: HistoryItem) {
             mView.header_history.text = historyItem.content
             mView.history_description.text = historyItem.details
-            mView.history_image.loadImage(mView.toString(), mView.context , R.drawable.ic_kitchen_black_24dp)
+            Glide.with(mView.context)
+                .load(historyItem.image)
+                .into(mView.history_image)
 
         }
 

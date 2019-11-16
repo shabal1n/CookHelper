@@ -1,10 +1,11 @@
 package com.example.cookhelper.navigation.history
 
 data class HistoryItem(
-    val id: String,
+    val id: Int,
     val content: String,
     val details: String,
-    val type: HistoryType
+    val type: HistoryType,
+    val image: String
 ) {
     override fun toString(): String = content
 }

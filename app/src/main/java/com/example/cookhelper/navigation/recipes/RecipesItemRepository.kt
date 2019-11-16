@@ -45,7 +45,7 @@ class RecipesItemRepository {
         )
 
     )
-    fun getChildrensByParent(parent: String): List<RecipesItem> {
+    fun getChildrenByParent(parent: String): List<RecipesItem> {
         val children = mutableListOf<RecipesItem>()
         recipes.forEach {
             if (it.parent == parent) {
