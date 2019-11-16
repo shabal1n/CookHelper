@@ -6,11 +6,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import kotlinx.android.synthetic.main.fragment_recipes_child_recycler.view.*
 
-class ChildAdapter(private val children : List<ChildModel>)
+class ChildAdapter(private val children : List<RecipesItem>)
     : RecyclerView.Adapter<ChildAdapter.ViewHolder>(){
+
+    private val recipesItem: RecipesItem
+        get() {
+            return recipesItem
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): ViewHolder {
@@ -24,11 +30,12 @@ class ChildAdapter(private val children : List<ChildModel>)
         return children.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder,
-                                  position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val child = children[position]
-        holder.imageView.setImageResource(child.image)
-        holder.textView.text = child.title
+        Glide.with(holder.itemView.context)
+            .load(children[position].image)
+            .into(holder.imageView)
+        holder.textView.text = child.content
     }
 
 

@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
+import com.example.cookhelper.navigation.products.ProductsItem
 import kotlinx.android.synthetic.main.fragment_recipes.*
+import org.koin.android.ext.android.inject
 
 
 class FragmentRecipes : Fragment() {
 
     lateinit var recyclerView: RecyclerView
+    private val viewModel: RecipesViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +29,8 @@ class FragmentRecipes : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
+
+
     }
 
     private fun initRecycler() {
@@ -36,7 +41,7 @@ class FragmentRecipes : Fragment() {
                 context, RecyclerView.VERTICAL, false
             )
             adapter = ParentAdapter(
-                    ParentDataFactory
+                    viewModel
                     .getParents()
             )
         }

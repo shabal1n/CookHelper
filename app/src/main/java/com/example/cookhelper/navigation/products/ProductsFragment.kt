@@ -133,7 +133,7 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
                 "7",
                 "Apple",
                 "fruit",
-                R.drawable.apple,
+                R.drawable.lagman,
                 ProductsItem.ProductsType.INFO,
                 "200 g."
             )

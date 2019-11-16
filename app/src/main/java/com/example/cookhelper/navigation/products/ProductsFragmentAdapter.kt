@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import com.example.cookhelper.extensions.loadImage
 import kotlinx.android.synthetic.main.fragment_products_list.view.*
@@ -12,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_products_list.view.*
 
 class ProductsFragmentAdapter(
     private val mValues: List<ProductsItem>,
-    private val mListener: ProductsFragmentAdapter.OnListFragmentInteractionListener?
+    private val mListener: OnListFragmentInteractionListener?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mOnClickListener: View.OnClickListener

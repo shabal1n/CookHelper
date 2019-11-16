@@ -2,6 +2,7 @@ package com.example.cookhelper
 
 import android.content.Context
 import com.example.cookhelper.base.CoroutineProvider
+import com.example.cookhelper.navigation.recipes.RecipesViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -35,5 +36,9 @@ val appModule = module {
 
     viewModel {
         RegistrationViewModel(get())
+    }
+
+    viewModel {
+        RecipesViewModel()
     }
 }
