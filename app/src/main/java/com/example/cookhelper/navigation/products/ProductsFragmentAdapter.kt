@@ -43,7 +43,6 @@ class ProductsFragmentAdapter(
             mView.products_description.text = productItem.details
             mView.image_products.loadImage(
                 mView.toString(),
-                mView.context,
                 productItem.image
             )
 

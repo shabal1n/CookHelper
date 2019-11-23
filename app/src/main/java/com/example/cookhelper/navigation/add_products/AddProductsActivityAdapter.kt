@@ -4,14 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 
-class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapter.Companion.Holder>, Filterable {
+class AddProductsActivityAdapter :
+    RecyclerView.Adapter<AddProductsActivityAdapter.Companion.Holder>, Filterable {
 
     var list: MutableList<AddProductsItem>
     var listFiltered: MutableList<AddProductsItem>
@@ -28,6 +27,9 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
     override fun onBindViewHolder(holder: Holder, position: Int) {
         var ct: AddProductsItem = listFiltered[position]
         holder.productName.text = ct.content
+        Glide.with(holder.itemView.context)
+            .load(ct.image)
+            .into(holder.productImage)
         rv.setOnClickListener {
             Toast.makeText(con, holder.productName.text.toString(), Toast.LENGTH_SHORT).show()
         }
@@ -38,10 +40,13 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
         class Holder : RecyclerView.ViewHolder {
 
             var productName: TextView
+            var productImage: ImageView
 
             constructor(rv: View) : super(rv) {
                 productName = rv.findViewById(R.id.product_name)
+                productImage = rv.findViewById(R.id.image_of_products)
             }
+
         }
     }
 
@@ -60,14 +65,14 @@ class AddProductsActivityAdapter : RecyclerView.Adapter<AddProductsActivityAdapt
 
     override fun getFilter(): Filter {
 
-        return object: Filter() {
+        return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
-                var charString : String = constraint.toString()
+                var charString: String = constraint.toString()
                 if (charString.isEmpty()) {
                     listFiltered = list
                 } else {
                     var filteredList: MutableList<AddProductsItem> = mutableListOf()
-                    for(s: AddProductsItem in list) {
+                    for (s: AddProductsItem in list) {
                         if (s.content.toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(s)
                         }

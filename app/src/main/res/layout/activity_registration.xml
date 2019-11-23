@@ -35,32 +35,42 @@
         android:textColorHint="@color/LightGrey"
         app:layout_constraintLeft_toLeftOf="@id/editName"
         app:layout_constraintTop_toBottomOf="@id/editName" />
-
-    <RadioButton
-        android:id="@+id/male_rad_but"
-        android:layout_width="120dp"
-        android:layout_height="45dp"
+    <RadioGroup
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:background="@drawable/round_button"
-        android:backgroundTint="@color/White"
-        android:paddingLeft="10dp"
-        android:text="Male"
-        android:textColor="@color/LightGrey"
+        android:id="@+id/radGroup"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="@id/editSn"
-        app:layout_constraintTop_toBottomOf="@id/editSn" />
+        app:layout_constraintTop_toBottomOf="@id/editSn">
 
-    <RadioButton
-        android:id="@+id/female_rad_but"
-        android:layout_width="120dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/round_button"
-        android:backgroundTint="@color/White"
-        android:paddingLeft="10dp"
-        android:text="Female"
-        android:textColor="@color/LightGrey"
-        app:layout_constraintLeft_toRightOf="@id/male_rad_but"
-        app:layout_constraintTop_toTopOf="@id/male_rad_but" />
+        <RadioButton
+            android:gravity="center"
+            android:id="@+id/female_rad_but"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/White"
+            android:paddingLeft="10dp"
+            android:text="Female"
+            android:textColor="@color/LightGrey" />
+
+        <RadioButton
+            android:gravity="center"
+            android:layout_weight="50"
+            android:id="@+id/male_rad_but"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/White"
+            android:text="Male"
+            android:textColor="@color/LightGrey" />
+
+    </RadioGroup>
+
+
+
 
     <EditText
         android:id="@+id/heightEdit"
@@ -72,8 +82,8 @@
         android:hint="Height, cm"
         android:paddingLeft="10dp"
         android:textColorHint="@color/LightGrey"
-        app:layout_constraintLeft_toLeftOf="@id/male_rad_but"
-        app:layout_constraintTop_toBottomOf="@id/male_rad_but" />
+        app:layout_constraintLeft_toLeftOf="@id/radGroup"
+        app:layout_constraintTop_toBottomOf="@id/radGroup" />
 
     <EditText
         android:id="@+id/edit_weight"
@@ -111,7 +121,7 @@
         android:hint="Password"
         android:paddingLeft="20dp"
         android:textColorHint="@color/LightGrey"
-        app:layout_constraintLeft_toLeftOf="@id/male_rad_but"
+        app:layout_constraintLeft_toLeftOf="@id/radGroup"
         app:layout_constraintTop_toBottomOf="@id/editLim" />
 
     <Button

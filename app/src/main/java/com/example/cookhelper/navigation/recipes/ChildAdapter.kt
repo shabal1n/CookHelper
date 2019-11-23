@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import kotlinx.android.synthetic.main.fragment_recipes_child_recycler.view.*
 
-class ChildAdapter(private val children : List<RecipesItem>)
+class ChildAdapter(private val children : List<RecipesItem>, private val listener: OnRecipesItemClickListener)
     : RecyclerView.Adapter<ChildAdapter.ViewHolder>(){
 
     private val recipesItem: RecipesItem
@@ -36,13 +36,14 @@ class ChildAdapter(private val children : List<RecipesItem>)
             .load(children[position].image)
             .into(holder.imageView)
         holder.textView.text = child.content
+        holder.itemView.setOnClickListener {
+            listener.onClick(child)
+        }
     }
 
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-
         val textView : TextView = itemView.child_textView
         val imageView: ImageView = itemView.child_imageView
-
     }
 }

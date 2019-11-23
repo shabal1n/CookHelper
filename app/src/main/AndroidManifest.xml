@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".navigation.add_products.AddProductsActivity"></activity>
+        <activity
+            android:name=".Meal"
+            android:label="@string/title_activity_meal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".navigation.add_products.AddProductsActivity" />
         <activity
             android:name=".navigation.BottomNavigation"
             android:label="@string/title_activity_bottom_navigation" />

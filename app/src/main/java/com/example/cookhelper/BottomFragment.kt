@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.cookhelper.dummy.DummyContent
+import kotlinx.android.synthetic.main.bottom_fragment.*
 
 class BottomFragment : Fragment() {
 
@@ -25,6 +26,7 @@ class BottomFragment : Fragment() {
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
+
     }
 
     override fun onCreateView(

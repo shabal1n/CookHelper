@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Meal">
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/image_meal"
+        android:layout_width="match_parent"
+        android:src="@drawable/ic_kitchen_black_24dp"
+        android:layout_height="290dp" />
+    <View
+        android:id="@+id/viewbottom"
+        app:layout_constraintLeft_toLeftOf="@id/image_meal"
+        app:layout_constraintTop_toBottomOf="@id/image_meal"
+        android:layout_width="match_parent"
+        android:background="@color/LightGrey"
+        android:layout_height="0.5dp"/>
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/viewbottom"
+        android:id="@+id/meal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Meal name"
+        android:textSize="30dp"
+        android:gravity="center"/>
+    <ScrollView
+        android:id="@+id/scrollViewdesc"
+        app:layout_constraintTop_toBottomOf="@id/meal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/meal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description of any meal"/>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

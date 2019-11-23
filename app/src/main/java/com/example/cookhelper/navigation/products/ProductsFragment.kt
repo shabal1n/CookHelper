@@ -36,12 +36,6 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        add_products_button.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, AddProductsActivity::class.java)
-                it.startActivity(intent)
-            }
-        }
         recycler_products.layoutManager = when {
             columnCount <= 1 -> LinearLayoutManager(context)
             else -> GridLayoutManager(context, columnCount)
@@ -139,6 +133,12 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
             )
         )
         recycler_products.adapter = ProductsFragmentAdapter(mockList, this)
+        add_products_button.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, AddProductsActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
 
     }
 

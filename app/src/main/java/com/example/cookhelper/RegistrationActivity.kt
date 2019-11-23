@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -25,6 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class RegistrationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private var gender = ""
 
     private val viewModel: RegistrationViewModel by viewModel()
 
@@ -36,15 +38,34 @@ class RegistrationActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
 
+        setListener()
+
         editLim.setOnClickListener {
             val list = ArrayList<DummyContent.DummyItem>()
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
-            list.add((DummyContent.DummyItem("Sugar lim", "sdfsd", "asdasd")))
+            list.add((DummyContent.DummyItem("1",
+                "Gluten intolerance",
+                "Avoid all foods and drinks containing bread, pasta, cereals, beer, baked goods, crackers, sauces, dressing and gravies, especially soy sauce")))
+            list.add((DummyContent.DummyItem("2",
+                "Dairy intolerance",
+                "Avoid dairy products that contain lactose, such as milk and ice cream.")))
+            list.add((DummyContent.DummyItem("3",
+                "Caffeine intolerance",
+                "People with a sensitivity to caffeine should minimize their intake by avoiding foods and beverages that contain caffeine, including coffee, soda, energy drinks, tea and chocolate.")))
+            list.add((DummyContent.DummyItem("4",
+                "Salicylates intolerance",
+                "While completely removing salicylates from the diet is impossible, those with a salicylate intolerance should avoid foods high in salicylates like spices, coffee, raisins and oranges, as well as cosmetics and medications that contain salicylates")))
+            list.add((DummyContent.DummyItem("5",
+                "Amines intolerance",
+                "People with an intolerance to histamine should avoid foods high in this natural chemical: fermented foods, cured meats, dried fruits, citrus fruits, avocados, aged cheeses, smoked fish, vinegar, soured foods like buttermilk" )))
+            list.add((DummyContent.DummyItem("6",
+                "FODMAPs intolerance",
+                "There are many foods high in FODMAPs, including: apples, soft cheeses, honey, milk, artichokes, bread, beans, lentils")))
+            list.add((DummyContent.DummyItem("7",
+                "Sulfites intolerance",
+                "Examples of foods that may contain sulfites include: dried fruit, wine,  apple cider, canned vegetables, pickled foods, condiments, potato chips, beer, tea, baked goods")))
+            list.add((DummyContent.DummyItem("8",
+                "Fructose intolerance",
+                "The following high-fructose foods should be avoided: soda, honey, apples, apple juice and apple cider, agave nectar, certain fruits like watermelon, cherries and pears, certain vegetables like sugar snap peas")))
 
             val bottomSheetFragment = BottomSheetFragment(list) {
 
@@ -55,7 +76,6 @@ class RegistrationActivity : AppCompatActivity() {
             signUpUser()
             writeNewUser()
         }
-
         imageAcc.setOnClickListener {
             setAccountListener()
         }
@@ -84,9 +104,10 @@ class RegistrationActivity : AppCompatActivity() {
         val weight = edit_weight.text.toString()
         val height = heightEdit.text.toString()
 
-            val finalUser = User(name, weight, height)
+            val finalUser = User(name, weight, height, gender)
             database.child("users").child(name).setValue(finalUser)
     }
+
 
     private fun signUpUser() {
         if (editSn.text.toString().isEmpty()) {
@@ -160,7 +181,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun initObservers() {
         viewModel.downloadUriLiveData.observe(this, Observer {
-            imageAcc.loadImage(it.toString(), this, R.drawable.ic_account_circle_black_24dp)
+            imageAcc.loadImage(it.toString(), R.drawable.ic_account_circle_black_24dp)
         })
     }
 
@@ -186,4 +207,27 @@ class RegistrationActivity : AppCompatActivity() {
         }
     }
 
+    private fun setListener() {
+        radGroup.setOnCheckedChangeListener { group, checkedId ->
+            setDefaultState(female_rad_but)
+            setDefaultState(male_rad_but)
+            gender = when (checkedId) {
+                R.id.male_rad_but -> {
+                    "male"
+                }
+                R.id.female_rad_but -> {
+                    "female"
+                }
+                else -> {
+                    ""
+                }
+
+            }
+        }
+    }
+
+    private fun setDefaultState(editText: RadioButton) {
+        editText.error = null
+        editText.setBackgroundResource(R.drawable.switch_choice_btn)
+    }
 }

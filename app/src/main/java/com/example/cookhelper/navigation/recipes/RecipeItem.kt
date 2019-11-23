@@ -1,5 +1,7 @@
 package com.example.cookhelper.navigation.recipes
 
+import java.io.Serializable
+
 data class RecipesItem(
     val id: Int,
     var content: String,
@@ -7,7 +9,7 @@ data class RecipesItem(
     val image: String,
     val quantity: Int,
     val parent: String
-) {
+): Serializable {
 
     override fun toString(): String = content
 
