@@ -16,10 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".navigation.profile.GraphOfCalories"></activity>
+        <activity android:name=".navigation.profile.HelpActivity" />
+        <activity android:name=".navigation.profile.AboutApp" />
+        <activity android:name=".navigation.profile.RateApp" />
         <activity
             android:name=".Meal"
             android:label="@string/title_activity_meal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".navigation.add_products.AddProductsActivity" />
         <activity
             android:name=".navigation.BottomNavigation"

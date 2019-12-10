@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="83"
+            android:text="25"
             android:textColor="@color/White"
             android:textSize="60dp"
             android:textStyle="bold" />

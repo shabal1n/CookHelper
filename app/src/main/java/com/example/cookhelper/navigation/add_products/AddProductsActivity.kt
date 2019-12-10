@@ -7,31 +7,20 @@ import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuCompat
 import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
-import com.example.cookhelper.navigation.products.ProductsItem
-import com.example.cookhelper.navigation.recipes.RecipesItem
+import com.example.cookhelper.firebase.ProfileData
+
 
 class AddProductsActivity : AppCompatActivity() {
 
-    lateinit var recyclerview: RecyclerView
+    private lateinit var viewModel: ProfileData
+    lateinit var recycler: RecyclerView
     var list: MutableList<AddProductsItem> = mutableListOf()
     val repository = ProductsAddItemRepository()
     lateinit var layoutManager: RecyclerView.LayoutManager
-    var content: Array<String> = arrayOf(
-        "Potato",
-        "Tomato",
-        "Onion",
-        "Cucumber",
-        "Strawberry",
-        "Peach",
-        "Melon",
-        "Bread",
-        "Cheese"
-    )
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var adapter: AddProductsActivityAdapter
     lateinit var searchView: SearchView
@@ -41,36 +30,43 @@ class AddProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_new_products)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        recyclerview = findViewById(R.id.add_products_recycler)
+        recycler = findViewById(R.id.add_products_recycler)
         layoutManager = LinearLayoutManager(this)
-        recyclerview.layoutManager = layoutManager
-        recyclerview.setHasFixedSize(true)
+        recycler.layoutManager = layoutManager
+        recycler.setHasFixedSize(true)
         var count = 0
-        for(product: AddProductsItem in repository.products) {
+        for (product: AddProductsItem in repository.products) {
             list.add(product)
             count++
         }
         adapter = AddProductsActivityAdapter(list, this)
-        recyclerview.adapter = adapter
+        recycler.adapter = adapter
+
+        viewModel.onViewInitizialized()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_products_add,menu)
-        var item : MenuItem = menu!!.findItem(R.id.action_search)
-        searchView = MenuItemCompat.getActionView(item) as SearchView
-        MenuItemCompat.setOnActionExpandListener(item, object: MenuItemCompat.OnActionExpandListener{
-            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                toolbar.setBackgroundColor(Color.WHITE)
-                (searchView.findViewById(androidx.appcompat.R.id.search_src_text) as EditText).setHintTextColor(Color.BLACK)
-                return true
-            }
 
-            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                toolbar.setBackgroundColor(resources.getColor(R.color.CornflowerBlue))
-                searchView.setQuery("", false)
-                return true
-            }
-        })
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_products_add, menu)
+        var item: MenuItem = menu!!.findItem(R.id.action_search)
+        searchView = MenuItemCompat.getActionView(item) as SearchView
+        MenuItemCompat.setOnActionExpandListener(
+            item,
+            object : MenuItemCompat.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    toolbar.setBackgroundColor(Color.WHITE)
+                    (searchView.findViewById(androidx.appcompat.R.id.search_src_text) as EditText).setHintTextColor(
+                        Color.BLACK
+                    )
+                    return true
+                }
+
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    toolbar.setBackgroundColor(resources.getColor(R.color.CornflowerBlue))
+                    searchView.setQuery("", false)
+                    return true
+                }
+            })
         searchView.maxWidth = Int.MAX_VALUE
         searchName(searchView)
         return true
@@ -78,7 +74,7 @@ class AddProductsActivity : AppCompatActivity() {
 
     private fun searchName(searchView: SearchView) {
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -91,21 +87,24 @@ class AddProductsActivity : AppCompatActivity() {
 
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item!!.itemId == R.id.action_search) {
+        if (item!!.itemId == R.id.action_search) {
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
-        if(!searchView.isIconified) {
+        if (!searchView.isIconified) {
             searchView.isIconified = true
             return
         }
         super.onBackPressed()
     }
+
+
 }
 
 

@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.cookhelper.dummy.DummyContent
+import com.example.cookhelper.entities.Table
 import com.example.cookhelper.entities.User
 import com.example.cookhelper.extensions.loadImage
 import com.google.firebase.auth.FirebaseAuth
@@ -230,4 +231,5 @@ class RegistrationActivity : AppCompatActivity() {
         editText.error = null
         editText.setBackgroundResource(R.drawable.switch_choice_btn)
     }
+
 }
