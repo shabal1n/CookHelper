@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.InputType
 import android.util.Patterns
 import android.widget.RadioButton
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import com.bumptech.glide.annotation.GlideExtension
 import com.example.cookhelper.dummy.DummyContent
 import com.example.cookhelper.entities.Table
 import com.example.cookhelper.entities.User
@@ -20,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.theartofdev.edmodo.cropper.CropImage
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registration.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,6 +31,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var gender = ""
+
 
     private val viewModel: RegistrationViewModel by viewModel()
 
@@ -74,14 +78,17 @@ class RegistrationActivity : AppCompatActivity() {
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
         button_signup.setOnClickListener {
-            signUpUser()
             writeNewUser()
+            signUpUser()
         }
         imageAcc.setOnClickListener {
             setAccountListener()
         }
 
         initObservers()
+        editName.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+        editSn.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+        editPass.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
     }
 
     private fun writeNewUser() {
@@ -100,15 +107,20 @@ class RegistrationActivity : AppCompatActivity() {
                 heightEdit.requestFocus()
                 return
             }
+            if (!Patterns.EMAIL_ADDRESS.matcher(editSn.text.toString()).matches()) {
+                editSn.error = "Please enter email"
+                editSn.requestFocus()
+                return
+            }
 
-        val name = editName.text.toString()
-        val weight = edit_weight.text.toString()
-        val height = heightEdit.text.toString()
+            var name = editName.text.toString()
+            var weight = edit_weight.text.toString()
+            var height = heightEdit.text.toString()
 
-            val finalUser = User(name, weight, height, gender)
+            val finalUser = User(name, gender, weight, height)
             database.child("users").child(name).setValue(finalUser)
-    }
 
+    }
 
     private fun signUpUser() {
         if (editSn.text.toString().isEmpty()) {
@@ -145,6 +157,8 @@ class RegistrationActivity : AppCompatActivity() {
                 }
             }
     }
+
+
 
 
     private fun setAccountListener() {

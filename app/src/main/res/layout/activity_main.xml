@@ -13,7 +13,6 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/LightOrangeMain"
-        android:onClick="toastMe"
         android:text="Login"
         android:textColor="@color/White"
         android:textSize="20dp"
@@ -53,6 +52,7 @@
 
     <EditText
         android:id="@+id/password_edit"
+        android:inputType="textPassword"
         android:layout_width="270dp"
         android:layout_height="45dp"
         android:layout_marginTop="50dp"
@@ -61,7 +61,6 @@
         android:layout_marginLeft="35dp"
         android:hint="Password"
         android:paddingLeft="20dp"
-        android:textColor="@color/LightGrey"
         android:textColorHint="@color/LightGrey"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -113,6 +112,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/proceed" />
+
 
 
 

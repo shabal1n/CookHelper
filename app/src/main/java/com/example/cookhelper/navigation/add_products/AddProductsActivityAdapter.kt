@@ -1,6 +1,8 @@
 package com.example.cookhelper.navigation.add_products
 
+import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +33,26 @@ class AddProductsActivityAdapter :
             .load(ct.image)
             .into(holder.productImage)
         rv.setOnClickListener {
-            Toast.makeText(con, holder.productName.text.toString(), Toast.LENGTH_SHORT).show()
+            val builder = AlertDialog.Builder(con)
+
+            builder.setTitle(holder.productName.text)
+
+            builder.setMessage("Do you want to add this product?")
+
+            builder.setPositiveButton("Yes"){ _, _ ->
+
+                Toast.makeText(this.con,"Added product to your list",Toast.LENGTH_SHORT).show()
+
+                // ADD PRODUCTS TO LIST
+            }
+
+            builder.setNeutralButton("No"){_,_ ->
+                Toast.makeText(this.con,"Cancelled",Toast.LENGTH_SHORT).show()
+            }
+
+            val dialog: AlertDialog = builder.create()
+
+            dialog.show()
         }
 
     }

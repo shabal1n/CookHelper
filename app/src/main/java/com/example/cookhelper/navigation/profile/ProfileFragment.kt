@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cookhelper.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -25,6 +26,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         database = FirebaseDatabase.getInstance().reference
         return inflater.inflate(R.layout.fragment_profile, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,6 +59,7 @@ class ProfileFragment : Fragment() {
         }
 
         logoutBtn.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
             Singleton.token = ""
             startActivity(Intent(activity, SplashActivity::class.java))
         }

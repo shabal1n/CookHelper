@@ -11,12 +11,12 @@ import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
-import com.example.cookhelper.firebase.ProfileData
+
 
 
 class AddProductsActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ProfileData
+
     lateinit var recycler: RecyclerView
     var list: MutableList<AddProductsItem> = mutableListOf()
     val repository = ProductsAddItemRepository()
@@ -42,7 +42,6 @@ class AddProductsActivity : AppCompatActivity() {
         adapter = AddProductsActivityAdapter(list, this)
         recycler.adapter = adapter
 
-        viewModel.onViewInitizialized()
     }
 
 
@@ -106,9 +105,3 @@ class AddProductsActivity : AppCompatActivity() {
 
 
 }
-
-
-
-
-
-

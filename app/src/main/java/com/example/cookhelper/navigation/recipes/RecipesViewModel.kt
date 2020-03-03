@@ -4,7 +4,7 @@ import com.example.cookhelper.base.BaseViewModel
 
 class RecipesViewModel : BaseViewModel() {
 
-    private val recipesItemRepository = RecipesItemRepository()
+    val recipesItemRepository = RecipesItemRepository()
     private val titles =  arrayListOf( "Snacks", "Breakfast", "Dinner", "Evening dinner")
 
 

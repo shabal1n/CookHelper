@@ -10,14 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.Meal
 import com.example.cookhelper.R
+import com.example.cookhelper.navigation.add_products.AddProductsItem
 import kotlinx.android.synthetic.main.fragment_recipes.*
 import org.koin.android.ext.android.inject
+import java.util.Observer
 
 
 class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
 
     lateinit var recyclerView: RecyclerView
     private val viewModel: RecipesViewModel by inject()
+    lateinit var adapter: ChildAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +36,7 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
     }
 
     override fun onClick(recipes: RecipesItem) {
-        val intent = Intent (activity, Meal::class.java)
+        val intent = Intent(activity, Meal::class.java)
         intent.putExtra("recipe", recipes)
         activity?.startActivity(intent)
 
@@ -52,6 +55,12 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
                 this@FragmentRecipes
             )
         }
+    }
+
+
+    private fun updateProfileUI(recipes: List<RecipesItem>) {
+        adapter.children = recipes.toMutableList()
+        adapter.notifyDataSetChanged()
     }
 }
 

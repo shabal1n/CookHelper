@@ -41,4 +41,6 @@ val appModule = module {
     viewModel {
         RecipesViewModel()
     }
+
+
 }
