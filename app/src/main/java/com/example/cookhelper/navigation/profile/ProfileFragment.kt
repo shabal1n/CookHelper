@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cookhelper.*
+import com.example.cookhelper.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -29,8 +29,21 @@ class ProfileFragment : Fragment() {
 
     }
 
+    data class User (
+        val name: String = ""
+    )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val id = FirebaseAuth.getInstance().currentUser!!.uid
+        database = FirebaseDatabase.getInstance().reference
+        database.child("users").child(id).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(p1: DataSnapshot) {
+                profile_name.text = p1.getValue(User::class.java)!!.name
+            }
+        })
         rateApp.setOnClickListener {
             activity?.let {
                 val intent = Intent(it, RateApp::class.java)

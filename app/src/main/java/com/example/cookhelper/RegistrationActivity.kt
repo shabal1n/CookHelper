@@ -31,6 +31,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var gender = ""
+    private lateinit var savePhotoUrl : String
 
 
     private val viewModel: RegistrationViewModel by viewModel()
@@ -78,7 +79,6 @@ class RegistrationActivity : AppCompatActivity() {
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
         button_signup.setOnClickListener {
-            writeNewUser()
             signUpUser()
         }
         imageAcc.setOnClickListener {
@@ -91,45 +91,15 @@ class RegistrationActivity : AppCompatActivity() {
         editPass.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
     }
 
-    private fun writeNewUser() {
-            if (editName.text.toString().isEmpty()) {
-                editName.error = "Please enter your name"
-                editName.requestFocus()
-                return
-            }
-            if (edit_weight.text.toString().isEmpty()) {
-                edit_weight.error = "Please enter your weight"
-                edit_weight.requestFocus()
-                return
-            }
-            if (heightEdit.text.toString().isEmpty()) {
-                heightEdit.error = "Please enter your height"
-                heightEdit.requestFocus()
-                return
-            }
-            if (!Patterns.EMAIL_ADDRESS.matcher(editSn.text.toString()).matches()) {
-                editSn.error = "Please enter email"
-                editSn.requestFocus()
-                return
-            }
-
-            var name = editName.text.toString()
-            var weight = edit_weight.text.toString()
-            var height = heightEdit.text.toString()
-
-            val finalUser = User(name, gender, weight, height)
-            database.child("users").child(name).setValue(finalUser)
-
-    }
 
     private fun signUpUser() {
         if (editSn.text.toString().isEmpty()) {
-            editSn.error = "Please enter email"
+            editSn.error = "Please enter email address"
             editSn.requestFocus()
             return
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(editSn.text.toString()).matches()) {
-            editSn.error = "Please enter email"
+            editSn.error = "Please enter correct email address"
             editSn.requestFocus()
             return
         }
@@ -143,10 +113,21 @@ class RegistrationActivity : AppCompatActivity() {
             editName.requestFocus()
             return
         }
+        if (edit_weight.text.toString().isEmpty()) {
+            edit_weight.error = "Please enter your weight"
+            edit_weight.requestFocus()
+            return
+        }
+        if (heightEdit.text.toString().isEmpty()) {
+            heightEdit.error = "Please enter your height"
+            heightEdit.requestFocus()
+            return
+        }
 
         auth.createUserWithEmailAndPassword(editSn.text.toString(), editPass.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    saveUserToFirebase ()
                     startActivity(Intent(this, MainActivity::class.java))
                 } else {
 
@@ -197,6 +178,7 @@ class RegistrationActivity : AppCompatActivity() {
     private fun initObservers() {
         viewModel.downloadUriLiveData.observe(this, Observer {
             imageAcc.loadImage(it.toString(), R.drawable.ic_account_circle_black_24dp)
+            savePhotoUrl = it.toString()
         })
     }
 
@@ -244,6 +226,26 @@ class RegistrationActivity : AppCompatActivity() {
     private fun setDefaultState(editText: RadioButton) {
         editText.error = null
         editText.setBackgroundResource(R.drawable.switch_choice_btn)
+    }
+
+
+    private fun saveUserToFirebase (){
+        var name = editName.text.toString()
+        var weight = edit_weight.text.toString()
+        var height = heightEdit.text.toString()
+        var profileImageUrl = savePhotoUrl
+
+        val finalUser = User(name, gender, weight, height, profileImageUrl)
+        val uid = FirebaseAuth.getInstance().uid
+
+        database.child("users").child(uid.toString()).setValue(finalUser).addOnCompleteListener(this) { task->
+            if (task.isSuccessful){
+                Toast.makeText(this, "Successfully registered", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 
 }
