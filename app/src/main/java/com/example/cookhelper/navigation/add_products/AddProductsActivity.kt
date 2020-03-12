@@ -11,7 +11,8 @@ import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
-
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class AddProductsActivity : AppCompatActivity() {
@@ -41,7 +42,6 @@ class AddProductsActivity : AppCompatActivity() {
         }
         adapter = AddProductsActivityAdapter(list, this)
         recycler.adapter = adapter
-
     }
 
 

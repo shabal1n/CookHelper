@@ -10,6 +10,10 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookhelper.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 
 class AddProductsActivityAdapter :
     RecyclerView.Adapter<AddProductsActivityAdapter.Companion.Holder>, Filterable {
@@ -18,6 +22,7 @@ class AddProductsActivityAdapter :
     var listFiltered: MutableList<AddProductsItem>
     var con: Context
     lateinit var rv: View
+    private lateinit var database: DatabaseReference
 
     constructor(list: MutableList<AddProductsItem>, con: Context) : super() {
         this.list = list
@@ -27,6 +32,9 @@ class AddProductsActivityAdapter :
 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        var uid = FirebaseAuth.getInstance().uid.toString()
+        database = FirebaseDatabase.getInstance().reference
+
         var ct: AddProductsItem = listFiltered[position]
         holder.productName.text = ct.content
         Glide.with(holder.itemView.context)
@@ -37,10 +45,12 @@ class AddProductsActivityAdapter :
 
             builder.setTitle(holder.productName.text)
 
+            var finalProduct = mutableListOf<AddProductsItem>(ct.copy())
+
             builder.setMessage("Do you want to add this product?")
 
             builder.setPositiveButton("Yes"){ _, _ ->
-
+                database.child("users").child(uid).child("products").push().setValue(finalProduct)
                 Toast.makeText(this.con,"Added product to your list",Toast.LENGTH_SHORT).show()
 
                 // ADD PRODUCTS TO LIST

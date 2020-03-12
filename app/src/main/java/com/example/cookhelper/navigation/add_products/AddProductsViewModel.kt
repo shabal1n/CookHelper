@@ -1,5 +1,10 @@
-import org.koin.android.ext.android.inject
-
+//import androidx.lifecycle.Observer
+//import com.example.cookhelper.navigation.add_products.AddProductsActivity
+//import com.example.cookhelper.navigation.add_products.AddProductsActivityAdapter
+//import com.example.cookhelper.navigation.add_products.AddProductsItem
+//import org.koin.android.ext.android.inject
+//import kotlin.reflect.KProperty
+//
 //package com.example.cookhelper.navigation.add_products
 //
 //import android.util.Log
@@ -43,17 +48,17 @@ import org.koin.android.ext.android.inject
 //    adapter.list = product.toMutableList()
 //    adapter.notifyDataSetChanged()
 //}
-
+//
 //initObserver()
 //viewModel.onViewInitializedProducts()
-
-
+//
+//
 //private var firebaseView: AddProductsViewModel by viewModel()
 //val repository = AddProductsViewModel()
 //private val viewModel: AddProductsViewModel by inject()
-
-
-
+//
+//
+//
 //private operator fun Any.setValue(
 //    addProductsActivity: AddProductsActivity,
 //    property: KProperty<*>,

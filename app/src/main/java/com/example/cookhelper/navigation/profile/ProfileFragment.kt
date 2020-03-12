@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.example.cookhelper.*
 import com.example.cookhelper.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -30,7 +32,8 @@ class ProfileFragment : Fragment() {
     }
 
     data class User (
-        val name: String = ""
+        val name: String = "",
+        val image: String = ""
     )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,6 +45,9 @@ class ProfileFragment : Fragment() {
 
             override fun onDataChange(p1: DataSnapshot) {
                 profile_name.text = p1.getValue(User::class.java)!!.name
+                val imageUri = p1.getValue(User::class.java)!!.image.toUri()
+                photoAccountImageView.setImageURI(imageUri)
+                Picasso.get().load(imageUri).into(photoAccountImageView)
             }
         })
         rateApp.setOnClickListener {
