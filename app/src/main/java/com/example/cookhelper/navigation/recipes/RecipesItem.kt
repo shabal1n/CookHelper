@@ -7,7 +7,6 @@ data class RecipesItem(
     var content: String,
     val details: String,
     val image: String,
-    val quantity: Int,
     val parent: String
 ): Serializable {
 

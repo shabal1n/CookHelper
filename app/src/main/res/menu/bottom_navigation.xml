@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/nav_recipes"
-        android:iconTint="@color/GreenMain"
+        android:iconTint="@color/LogoBackgroungBlue"
         android:icon="@drawable/ic_room_service_black_24dp"
         android:title="Recipes"/>
     <item

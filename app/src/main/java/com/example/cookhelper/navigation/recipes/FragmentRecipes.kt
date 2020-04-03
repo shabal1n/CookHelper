@@ -22,6 +22,8 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
     private val viewModel: RecipesViewModel by inject()
     lateinit var adapter: ChildAdapter
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +41,6 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
         val intent = Intent(activity, Meal::class.java)
         intent.putExtra("recipe", recipes)
         activity?.startActivity(intent)
-
     }
 
 
@@ -55,12 +56,6 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
                 this@FragmentRecipes
             )
         }
-    }
-
-
-    private fun updateProfileUI(recipes: List<RecipesItem>) {
-        adapter.children = recipes.toMutableList()
-        adapter.notifyDataSetChanged()
     }
 }
 

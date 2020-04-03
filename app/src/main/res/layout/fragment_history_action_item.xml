@@ -16,6 +16,7 @@
         android:id="@+id/header_history"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/LogoBackgroungBlue"
         android:layout_marginLeft="80dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +27,7 @@
         android:id="@+id/history_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/LogoBackgroungBlue"
         app:layout_constraintTop_toBottomOf="@id/header_history"
         app:layout_constraintLeft_toLeftOf="@id/header_history"
         android:text="Header description"/>

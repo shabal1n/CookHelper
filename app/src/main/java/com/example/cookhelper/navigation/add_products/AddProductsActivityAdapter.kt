@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookhelper.R
+import com.example.cookhelper.extensions.getData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -45,15 +46,13 @@ class AddProductsActivityAdapter :
 
             builder.setTitle(holder.productName.text)
 
-            var finalProduct = mutableListOf<AddProductsItem>(ct.copy())
-
+            var finalProduct = ct
+            var name = ct.content
             builder.setMessage("Do you want to add this product?")
 
             builder.setPositiveButton("Yes"){ _, _ ->
                 database.child("users").child(uid).child("products").push().setValue(finalProduct)
                 Toast.makeText(this.con,"Added product to your list",Toast.LENGTH_SHORT).show()
-
-                // ADD PRODUCTS TO LIST
             }
 
             builder.setNeutralButton("No"){_,_ ->

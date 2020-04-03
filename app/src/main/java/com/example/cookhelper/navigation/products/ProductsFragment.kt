@@ -1,8 +1,11 @@
 package com.example.cookhelper.navigation.products
 
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.renderscript.Sampler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +13,27 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cookhelper.navigation.add_products.AddProductsActivity
 import com.example.cookhelper.R
+import com.example.cookhelper.navigation.add_products.AddProductsActivity
+import com.example.cookhelper.navigation.recipes.RecipesItem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_products.*
 
 
-class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInteractionListener {
+class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInteractionListener{
 
     private var columnCount = 1
+    var mockList = ArrayList<ProductsItem>()
+    private val userId: String = FirebaseAuth.getInstance().currentUser!!.uid
+    val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId).child("products")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
+        viewDataInitializer()
     }
 
 
@@ -40,98 +50,79 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
             columnCount <= 1 -> LinearLayoutManager(context)
             else -> GridLayoutManager(context, columnCount)
         }
-        val mockList = arrayListOf<ProductsItem>()
-        mockList.add(
-            ProductsItem(
-                "1",
-                "Carrot",
-                "vegetable",
-                R.drawable.carrot,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem
-                (
-                "2",
-                "Mushrooms",
-                "vegetable",
-                R.drawable.shrooms,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "3",
-                "Potatoes",
-                "vegetable",
-                R.drawable.potato,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "4",
-                "Onion",
-                "vegetable",
-                R.drawable.onion,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "5",
-                "Cucumber",
-                "vegetable",
-                R.drawable.cucmber,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "6",
-                "Tomato",
-                "vegetable",
-                R.drawable.tomato,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "7",
-                "Garlic",
-                "vegetable",
-                R.drawable.garlic,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "7",
-                "Orange",
-                "fruit",
-                R.drawable.orange,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
-        mockList.add(
-            ProductsItem(
-                "7",
-                "Apple",
-                "fruit",
-                R.drawable.lagman,
-                ProductsItem.ProductsType.INFO,
-                "200 g."
-            )
-        )
+//        mockList.add(
+//            ProductsItem(
+//                1,
+//                "Carrot",
+//                "vegetable",
+//                "https://image.shutterstock.com/image-photo/carrot-isolated-on-white-background-260nw-1208616166.jpg"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem
+//                (
+//                2,
+//                "Mushrooms",
+//                "vegetable",
+//                "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1136653496%2F960x0.jpg%3Ffit%3Dscale"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                3,
+//                "Potatoes",
+//                "vegetable",
+//                "https://www.simplyrecipes.com/wp-content/uploads/2014/11/yukon-gold-potatoes-horiz-1200.jpg"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                4,
+//                "Onion",
+//                "vegetable",
+//                "https://images-na.ssl-images-amazon.com/images/I/81UeYuulNjL._SX679_.jpg"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                5,
+//                "Cucumber",
+//                "vegetable",
+//                "https://lh3.googleusercontent.com/proxy/leuNJt9x9JSTYpZgDK-inhO4uVmOWfU8jQYDs4NpP2_AuW-wZEjF_7wW62v-6C9i8qomubldgomCfbhXoUbSA_5awNyR6HbnTA5j8VF-MelSHe3i2VLigTk"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                6,
+//                "Tomato",
+//                "vegetable",
+//                "https://grist.files.wordpress.com/2011/06/tomato1.jpg?w=425"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                7,
+//                "Garlic",
+//                "vegetable",
+//                "https://image.shutterstock.com/image-photo/isolated-garlic-raw-on-white-260nw-625452236.jpg"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                8,
+//                "Orange",
+//                "fruit",
+//                "https://image.shutterstock.com/image-photo/ripe-orange-isolated-on-white-260nw-606022676.jpg"
+//            )
+//        )
+//        mockList.add(
+//            ProductsItem(
+//                9,
+//                "Apple",
+//                "fruit",
+//                "https://image.shutterstock.com/image-photo/red-apple-isolated-on-white-260nw-1498042211.jpg"
+//            )
+//        )
         recycler_products.adapter = ProductsFragmentAdapter(mockList, this)
         add_products_button.setOnClickListener {
             activity?.let{
@@ -140,6 +131,21 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
             }
         }
 
+    }
+
+    fun viewDataInitializer(){
+        reference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                var productsTemp = ArrayList<ProductsItem>()
+                p0.children.forEach{
+                    productsTemp.add(it.getValue(ProductsItem::class.java)!!)
+                }
+                mockList = productsTemp
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
     }
 
     override fun onListFragmentInteraction(item: ProductsItem) {

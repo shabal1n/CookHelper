@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import com.example.cookhelper.extensions.loadImage
 import kotlinx.android.synthetic.main.fragment_products_list.view.*
@@ -23,7 +24,7 @@ class ProductsFragmentAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int) = when (mValues[position].type) {
+    override fun getItemViewType(position: Int) = when (ProductsItem.ProductsType.INFO) {
         ProductsItem.ProductsType.INFO -> R.layout.fragment_products_list
     }
 
@@ -41,11 +42,9 @@ class ProductsFragmentAdapter(
         fun bind(productItem: ProductsItem) {
             mView.products_name.text = productItem.content
             mView.products_description.text = productItem.details
-            mView.image_products.loadImage(
-                mView.toString(),
-                productItem.image
-            )
-
+            Glide.with(mView.image_products.context)
+                .load(productItem.image)
+                .into(mView.image_products)
         }
 
         init {

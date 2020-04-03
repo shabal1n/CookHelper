@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name of products"
+            android:textColor="@color/LogoBackgroungBlue"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"/>
@@ -26,6 +27,7 @@
             android:id="@+id/products_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/LogoBackgroungBlue"
             app:layout_constraintLeft_toLeftOf="@id/products_name"
             app:layout_constraintTop_toBottomOf="@id/products_name"
             android:text="description"/>

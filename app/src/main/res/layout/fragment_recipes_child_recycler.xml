@@ -18,7 +18,7 @@
         android:layout_marginBottom="8dp"
         android:padding="10dp"
         android:text="Recipes"
-        android:textColor="@color/Black"
+        android:textColor="@color/LogoBackgroungBlue"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/child_imageView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_b"
+    android:background="@color/LogoBackgroungBlue"
     tools:context=".RegistrationActivity">
 
 
@@ -12,11 +12,12 @@
         android:id="@+id/editName"
         android:layout_width="250dp"
         android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:fontFamily="@font/lemon"
         android:hint="Name"
-        android:layout_marginLeft="15dp"
         android:paddingLeft="20dp"
         android:textColorHint="@color/LightGrey"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,6 +31,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:fontFamily="@font/lemon"
         android:hint="E-mail"
         android:paddingLeft="20dp"
         android:textColorHint="@color/LightGrey"
@@ -46,30 +48,30 @@
         app:layout_constraintTop_toBottomOf="@id/editSn">
 
         <RadioButton
-            android:gravity="center"
             android:id="@+id/female_rad_but"
             android:layout_width="120dp"
             android:layout_height="45dp"
             android:background="@drawable/round_button"
             android:backgroundTint="@color/White"
+            android:fontFamily="@font/lemon"
+            android:gravity="center"
             android:paddingLeft="10dp"
             android:text="Female"
             android:textColor="@color/LightGrey" />
 
         <RadioButton
-            android:gravity="center"
-            android:layout_weight="50"
             android:id="@+id/male_rad_but"
             android:layout_width="120dp"
             android:layout_height="45dp"
+            android:layout_weight="50"
             android:background="@drawable/round_button"
             android:backgroundTint="@color/White"
+            android:fontFamily="@font/lemon"
+            android:gravity="center"
             android:text="Male"
             android:textColor="@color/LightGrey" />
 
     </RadioGroup>
-
-
 
 
     <EditText
@@ -79,9 +81,11 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:fontFamily="@font/lemon"
         android:hint="Height, cm"
         android:paddingLeft="10dp"
         android:textColorHint="@color/LightGrey"
+        android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="@id/radGroup"
         app:layout_constraintTop_toBottomOf="@id/radGroup" />
 
@@ -92,9 +96,11 @@
         android:layout_marginLeft="10dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:fontFamily="@font/lemon"
         android:hint="Weight, kg"
         android:paddingLeft="10dp"
         android:textColorHint="@color/LightGrey"
+        android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@id/heightEdit"
         app:layout_constraintTop_toTopOf="@id/heightEdit" />
 
@@ -105,6 +111,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
+        android:fontFamily="@font/lemon"
         android:hint="Dietary limitations"
         android:paddingLeft="20dp"
         android:textColorHint="@color/LightGrey"
@@ -118,9 +125,11 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/round_button"
         android:backgroundTint="@color/White"
-        android:inputType="textPassword"
+        android:fontFamily="@font/lemon"
         android:hint="Password"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
+        android:textColor="#FFFFFF"
         android:textColorHint="@color/LightGrey"
         app:layout_constraintLeft_toLeftOf="@id/radGroup"
         app:layout_constraintTop_toBottomOf="@id/editLim" />
@@ -131,7 +140,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_button"
-        android:backgroundTint="@color/LightOrangeMain"
+        android:backgroundTint="@color/LogoBackgroundYellow"
         android:text="Sign up"
         android:textColor="@color/White"
         android:textSize="30dp"
@@ -144,19 +153,29 @@
         android:id="@+id/imageAcc"
         android:layout_width="51dp"
         android:layout_height="69dp"
+        android:tint="@color/LogoBackgroundYellow"
         android:src="@drawable/ic_account_circle_black_24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/uploadImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/lemon"
+        android:text="Upload image"
+        android:textColor="@color/WhiteSmoke"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageAcc"
-        android:text="Upload image"
-        android:textColor="@color/DarkBlue"/>
+        app:layout_constraintTop_toBottomOf="@id/imageAcc" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ramen"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"

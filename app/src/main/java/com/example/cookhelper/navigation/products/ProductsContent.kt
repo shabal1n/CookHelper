@@ -1,12 +1,10 @@
 package com.example.cookhelper.navigation.products
 
 data class ProductsItem(
-    val id: String,
+    val id: Int,
     var content: String,
     val details: String,
-    val image: Int,
-    val type: ProductsType,
-    val quantity: String
+    val image: String
 ) {
     override fun toString(): String = content
 

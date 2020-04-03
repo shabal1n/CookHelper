@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="LogoBackgroungBlue">#071330</color>
+    <color name="LogoBackgroundYellow">#ffc929</color>
     <color name="GreenMain">#7CD5AC</color>
     <color name="GreenButtons">#41CD8C</color>
     <color name="OrangeLifeSum">#FF903C</color>
@@ -7,9 +9,9 @@
     <color name="LightRedMain">#e27d60</color>
     <color name="DarkPinkMain">#c38d9e</color>
     <color name="GreenBlack">#03ae3c</color>
-    <color name="colorPrimary">#ff0080ff</color>
-    <color name="colorPrimaryDark">#ff0080ff</color>
-    <color name="colorAccent">#ff0080ff</color>
+    <color name="colorPrimary">#ffc929</color>
+    <color name="colorPrimaryDark">#071330</color>
+    <color name="colorAccent">#071330</color>
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>
     <color name="LightYellow">#FFFFE0</color>

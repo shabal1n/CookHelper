@@ -27,7 +27,7 @@
             android:layout_alignStart="@+id/rv_child"
             android:padding="16dp"
             android:text="Recipes for the day"
-            android:textColor="@color/Black"
+            android:textColor="@color/LogoBackgroungBlue"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView

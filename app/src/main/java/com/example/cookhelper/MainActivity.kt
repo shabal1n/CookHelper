@@ -2,8 +2,6 @@ package com.example.cookhelper
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -12,8 +10,8 @@ import com.example.cookhelper.navigation.BottomNavigation
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Please fill in your credentials", Toast.LENGTH_LONG).show()
         }
     }
-
 
 }
 
