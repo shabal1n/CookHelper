@@ -27,16 +27,19 @@ class RecipesViewModel : BaseViewModel() {
                     val list:ArrayList<ParentModel> = ArrayList()
                     val recipes:ArrayList<RecipesItem?> = ArrayList()
                     val uniqueParents = mutableSetOf<String>()
+
                     p0.children.forEach {
                         val model = it.getValue(RecipesItem::class.java)
                         model?.let { item-> uniqueParents.add(item.parent) }
                         recipes.add(model)
                     }
+
                     uniqueParents.forEach {parentName->
                         val parentModel = ParentModel(parentName,
                             recipes.filter { recipesItem: RecipesItem? -> recipesItem?.parent == parentName } as List<RecipesItem>)
                         list.add(parentModel)
                     }
+
                     _recipes.value = list
                 }
 
