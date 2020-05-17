@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
 import kotlinx.android.synthetic.main.fragment_recipes_parent_recycler.view.*
+import okhttp3.internal.addHeaderLenient
 
 class ParentAdapter(
-    private val parents: List<ParentModel>,
     private val listener: OnRecipesItemClickListener
 ) : RecyclerView.Adapter<ParentAdapter.ViewHolder>() {
+
     private val viewPool = RecyclerView.RecycledViewPool()
+
+    private var parents: List<ParentModel>? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,22 +27,26 @@ class ParentAdapter(
         return ViewHolder(v)
     }
 
+    fun setItems(items: List<ParentModel>){
+        parents = items
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
-        return parents.size
+        return parents?.size ?: 0
     }
 
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int
     ) {
-        val parent = parents[position]
-        holder.textView.text = parent.title
-        val childLayoutManager =
-            LinearLayoutManager(holder.recyclerView.context, RecyclerView.HORIZONTAL, false)
+        val parent = parents?.get(position)
+        holder.textView.text = parent?.title
+        val childLayoutManager = LinearLayoutManager(holder.recyclerView.context, RecyclerView.HORIZONTAL, false)
         childLayoutManager.initialPrefetchItemCount = 4
         holder.recyclerView.apply {
             layoutManager = childLayoutManager
-            adapter = ChildAdapter(parent.children, listener)
+            adapter = ChildAdapter(parent?.children, listener)
             setRecycledViewPool(viewPool)
         }
 

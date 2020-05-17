@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import kotlinx.android.synthetic.main.fragment_recipes_child_recycler.view.*
 
-class ChildAdapter(var children : List<RecipesItem>, private val listener: OnRecipesItemClickListener)
+class ChildAdapter(var children : List<RecipesItem>?, private val listener: OnRecipesItemClickListener)
     : RecyclerView.Adapter<ChildAdapter.ViewHolder>(){
 
 
@@ -23,17 +23,17 @@ class ChildAdapter(var children : List<RecipesItem>, private val listener: OnRec
     }
 
     override fun getItemCount(): Int {
-        return children.size
+        return children?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val child = children[position]
+        val child = children?.get(position)
         Glide.with(holder.itemView.context)
-            .load(children[position].image)
+            .load(child?.image)
             .into(holder.imageView)
-        holder.textView.text = child.content
+        holder.textView.text = child?.content
         holder.itemView.setOnClickListener {
-            listener.onClick(child)
+            listener.onClick(child!!)
         }
     }
 

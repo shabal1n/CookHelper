@@ -20,7 +20,6 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
 
     lateinit var recyclerView: RecyclerView
     private val viewModel: RecipesViewModel by inject()
-    lateinit var adapter: ChildAdapter
 
 
 
@@ -46,16 +45,18 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
 
     private fun initRecycler() {
         recyclerView = rv_parent
-
+        val parentAdapter = ParentAdapter(this)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(
                 context, RecyclerView.VERTICAL, false
             )
-            adapter = ParentAdapter(
-                viewModel.getParents(),
-                this@FragmentRecipes
-            )
+            adapter = parentAdapter
         }
+
+        viewModel.recipes.observe(this, androidx.lifecycle.Observer {
+            parentAdapter.setItems(it)
+        })
+
     }
 }
 
