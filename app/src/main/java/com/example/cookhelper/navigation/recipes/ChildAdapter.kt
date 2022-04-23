@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookhelper.R
+import com.example.cookhelper.entities.Recipe
 import kotlinx.android.synthetic.main.fragment_recipes_child_recycler.view.*
 
-class ChildAdapter(var children : List<RecipesItem>?, private val listener: OnRecipesItemClickListener)
+class ChildAdapter(var children : List<Recipe>?, private val listener: OnRecipesItemClickListener)
     : RecyclerView.Adapter<ChildAdapter.ViewHolder>(){
 
 
@@ -31,7 +32,7 @@ class ChildAdapter(var children : List<RecipesItem>?, private val listener: OnRe
         Glide.with(holder.itemView.context)
             .load(child?.image)
             .into(holder.imageView)
-        holder.textView.text = child?.content
+        holder.textView.text = child?.name
         holder.itemView.setOnClickListener {
             listener.onClick(child!!)
         }

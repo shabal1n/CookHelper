@@ -1,4 +1,4 @@
-package com.example.cookhelper.navigation.add_products
+package com.example.cookhelper.entities
 
 
 data class AddProductsItem(

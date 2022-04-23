@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.R
+import com.example.cookhelper.entities.Recipe
 import kotlinx.android.synthetic.main.fragment_recipes_parent_recycler.view.*
-import okhttp3.internal.addHeaderLenient
 
 class ParentAdapter(
     private val listener: OnRecipesItemClickListener
@@ -60,5 +60,5 @@ class ParentAdapter(
 }
 
 interface OnRecipesItemClickListener {
-    fun onClick(recipes: RecipesItem)
+    fun onClick(recipes: Recipe)
 }

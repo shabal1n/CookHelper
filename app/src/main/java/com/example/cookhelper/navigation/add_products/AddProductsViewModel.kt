@@ -1,7 +1,7 @@
 //import androidx.lifecycle.Observer
 //import com.example.cookhelper.navigation.add_products.AddProductsActivity
 //import com.example.cookhelper.navigation.add_products.AddProductsActivityAdapter
-//import com.example.cookhelper.navigation.add_products.AddProductsItem
+//import com.example.cookhelper.entities.AddProductsItem
 //import org.koin.android.ext.android.inject
 //import kotlin.reflect.KProperty
 //

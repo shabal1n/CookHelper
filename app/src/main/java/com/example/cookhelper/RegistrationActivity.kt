@@ -231,11 +231,13 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun saveUserToFirebase (){
         var name = editName.text.toString()
-        var weight = edit_weight.text.toString()
-        var height = heightEdit.text.toString()
+        var email = editSn.text.toString()
+        var pass = editPass.text.toString()
+        var weight = Integer.parseInt(edit_weight.text.toString())
+        var height = Integer.parseInt(heightEdit.text.toString())
         var profileImageUrl = savePhotoUrl
 
-        val finalUser = User(name, gender, weight, height, profileImageUrl)
+        val finalUser = User(1, name, email, pass, profileImageUrl, gender, weight, height)
         val uid = FirebaseAuth.getInstance().uid
 
         database.child("users").child(uid.toString()).setValue(finalUser).addOnCompleteListener(this) { task->

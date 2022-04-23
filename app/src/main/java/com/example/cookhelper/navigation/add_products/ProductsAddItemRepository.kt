@@ -1,5 +1,7 @@
 package com.example.cookhelper.navigation.add_products
 
+import com.example.cookhelper.entities.AddProductsItem
+
 class ProductsAddItemRepository {
     val products = mutableListOf<AddProductsItem>(
         AddProductsItem(

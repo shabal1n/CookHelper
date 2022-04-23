@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cookhelper.Meal
 import com.example.cookhelper.R
-import com.example.cookhelper.navigation.add_products.AddProductsItem
+import com.example.cookhelper.entities.Recipe
 import kotlinx.android.synthetic.main.fragment_recipes.*
 import org.koin.android.ext.android.inject
-import java.util.Observer
 
 
 class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
@@ -36,7 +35,7 @@ class FragmentRecipes : Fragment(), OnRecipesItemClickListener {
         initRecycler()
     }
 
-    override fun onClick(recipes: RecipesItem) {
+    override fun onClick(recipes: Recipe) {
         val intent = Intent(activity, Meal::class.java)
         intent.putExtra("recipe", recipes)
         activity?.startActivity(intent)

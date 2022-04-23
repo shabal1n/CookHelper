@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cookhelper.R
-import com.example.cookhelper.extensions.loadImage
+import com.example.cookhelper.entities.Product
 import kotlinx.android.synthetic.main.fragment_products_list.view.*
 
 
 class ProductsFragmentAdapter(
-    private val mValues: List<ProductsItem>,
+    private val mValues: List<Product>,
     private val mListener: OnListFragmentInteractionListener?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -19,13 +19,13 @@ class ProductsFragmentAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as ProductsItem
+            val item = v.tag as Product
             mListener?.onListFragmentInteraction(item)
         }
     }
 
-    override fun getItemViewType(position: Int) = when (ProductsItem.ProductsType.INFO) {
-        ProductsItem.ProductsType.INFO -> R.layout.fragment_products_list
+    override fun getItemViewType(position: Int) = when (Product.ProductsType.INFO) {
+        Product.ProductsType.INFO -> R.layout.fragment_products_list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,8 +39,8 @@ class ProductsFragmentAdapter(
     override fun getItemCount(): Int = mValues.size
 
     inner class ProductNameHeader(private val mView: View) : RecyclerView.ViewHolder(mView) {
-        fun bind(productItem: ProductsItem) {
-            mView.products_name.text = productItem.content
+        fun bind(productItem: Product) {
+            mView.products_name.text = productItem.name
             mView.products_description.text = productItem.details
             Glide.with(mView.image_products.context)
                 .load(productItem.image)
@@ -63,6 +63,6 @@ class ProductsFragmentAdapter(
     }
 
     interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: ProductsItem)
+        fun onListFragmentInteraction(item: Product)
     }
 }

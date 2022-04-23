@@ -1,11 +1,8 @@
 package com.example.cookhelper.navigation.products
 
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.renderscript.Sampler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,20 +10,23 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cookhelper.DataDAO
 import com.example.cookhelper.R
+import com.example.cookhelper.entities.Product
 import com.example.cookhelper.navigation.add_products.AddProductsActivity
-import com.example.cookhelper.navigation.recipes.RecipesItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_products.*
 
 
-class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInteractionListener{
+class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInteractionListener {
 
     private var columnCount = 1
-    var mockList = ArrayList<ProductsItem>()
+    var mockList = ArrayList<Product>()
     private val userId: String = FirebaseAuth.getInstance().currentUser!!.uid
-    val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId).child("products")
+
+    //    val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("users").child(userId).child("products")
+    val data = DataDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,31 +125,26 @@ class ProductsFragment : Fragment(), ProductsFragmentAdapter.OnListFragmentInter
 //        )
         recycler_products.adapter = ProductsFragmentAdapter(mockList, this)
         add_products_button.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, AddProductsActivity::class.java)
+            activity?.let {
+                val intent = Intent(it, AddProductsActivity::class.java)
                 it.startActivity(intent)
             }
         }
 
     }
 
-    fun viewDataInitializer(){
-        reference.addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(p0: DataSnapshot) {
-                var productsTemp = ArrayList<ProductsItem>()
-                p0.children.forEach{
-                    productsTemp.add(it.getValue(ProductsItem::class.java)!!)
-                }
-                mockList = productsTemp
-            }
+    private fun viewDataInitializer() {
+        var productsTemp = ArrayList<Product>()
+        var it = data.productsList.iterator()
+        while (it.hasNext()) {
+            productsTemp.add(it.next())
+        }
+        mockList = productsTemp
 
-            override fun onCancelled(p0: DatabaseError) {
-            }
-        })
     }
 
-    override fun onListFragmentInteraction(item: ProductsItem) {
-        Toast.makeText(this.context, item.content, Toast.LENGTH_SHORT).show()
+    override fun onListFragmentInteraction(item: Product) {
+        Toast.makeText(this.context, item.name, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
