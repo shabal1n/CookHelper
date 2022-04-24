@@ -5,10 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.cookhelper.DataDAO
 import com.example.cookhelper.base.BaseViewModel
 import com.example.cookhelper.entities.Recipe
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 class RecipesViewModel : BaseViewModel() {
 
@@ -26,7 +22,7 @@ class RecipesViewModel : BaseViewModel() {
         val recipes: ArrayList<Recipe?> = ArrayList()
         val uniqueParents = mutableSetOf<String>()
 
-        var it = data.recipesList.iterator()
+        var it = data.matchingRecipes.iterator()
 
         while (it.hasNext()) {
             val model = it.next()

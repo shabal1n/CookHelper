@@ -1,5 +1,6 @@
 package com.example.cookhelper;
 
+import com.example.cookhelper.algorithms.Matcher;
 import com.example.cookhelper.entities.History;
 import com.example.cookhelper.entities.Ingredient;
 import com.example.cookhelper.entities.Product;
@@ -10,25 +11,29 @@ import com.example.cookhelper.entities.User;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DataDAO {
-    private static List<History> historyList;
-    private static List<Ingredient> ingredientsList;
-    private static List<Product> productsList;
-    private static List<Recipe> recipesList;
-    private static List<Step> recipeSteps;
+    public List<History> historyList;
+    public List<Ingredient> ingredientsList;
+    public List<Product> productsList;
+    public List<Recipe> allRecipesList;
+    public List<Step> recipeSteps;
+    private final TreeMap<Integer, Recipe> matchingRecipes;
 
     public DataDAO() {
         historyList = new ArrayList<History>();
         ingredientsList = new ArrayList<Ingredient>();
         productsList = new ArrayList<Product>();
-        recipesList = new ArrayList<Recipe>();
+        allRecipesList = new ArrayList<Recipe>();
         recipeSteps = new ArrayList<Step>();
         fetchData();
+        Matcher matcher = new Matcher(allRecipesList, productsList, ingredientsList);
+        matcher.chooseBestMatches();
+        matchingRecipes = matcher.chooseBestMatches();
     }
 
     public void fetchData() {
@@ -46,10 +51,10 @@ public class DataDAO {
         productsList.add(new Product(8, "Sausage", "Sausage", "image"));
         productsList.add(new Product(9, "Lavash", "Lavash", "image"));
 
-        recipesList.add(new Recipe(1, cat, "Burger", "Junk food", "image", cat.getName()));
-        recipesList.add(new Recipe(2, cat, "French Fries", "Junk food", "image", cat.getName()));
-        recipesList.add(new Recipe(3, cat, "Hot Dog", "Junk food", "image", cat.getName()));
-        recipesList.add(new Recipe(4, cat, "Doner", "Junk food", "image", cat.getName()));
+        allRecipesList.add(new Recipe(1, cat, "Burger", "Junk food", "image", cat.getName()));
+        allRecipesList.add(new Recipe(2, cat, "French Fries", "Junk food", "image", cat.getName()));
+        allRecipesList.add(new Recipe(3, cat, "Hot Dog", "Junk food", "image", cat.getName()));
+        allRecipesList.add(new Recipe(4, cat, "Doner", "Junk food", "image", cat.getName()));
 
 
         ingredientsList.add(new Ingredient(1, getRecipeById(1), getProductById(1)));
@@ -62,20 +67,18 @@ public class DataDAO {
         ingredientsList.add(new Ingredient(8, getRecipeById(3), getProductById(8)));
         ingredientsList.add(new Ingredient(9, getRecipeById(3), getProductById(5)));
 
-        historyList.add(new History(1, user, recipesList.get(0), History.HistoryType.INFO, "23-05-2002"));
-        historyList.add(new History(2, user, recipesList.get(1), History.HistoryType.INFO, "24-05-2002"));
-        historyList.add(new History(3, user, recipesList.get(2), History.HistoryType.INFO, "25-05-2002"));
-        historyList.add(new History(4, user, recipesList.get(3), History.HistoryType.INFO, "23-05-2002"));
+        historyList.add(new History(1, user, allRecipesList.get(0), History.HistoryType.INFO, "23-05-2002"));
+        historyList.add(new History(2, user, allRecipesList.get(1), History.HistoryType.INFO, "24-05-2002"));
+        historyList.add(new History(3, user, allRecipesList.get(2), History.HistoryType.INFO, "25-05-2002"));
+        historyList.add(new History(4, user, allRecipesList.get(3), History.HistoryType.INFO, "23-05-2002"));
         sortHistoryByDate();
-
-        productsList.add(new Product(1, "Tomato", "Vegetable", "image"));
     }
 
     public List<History> getHistoryList() {
         return historyList;
     }
 
-    public List<Recipe> getRecipesList() {return recipesList;}
+    public List<Recipe> getAllRecipesList() {return allRecipesList;}
 
     public List<Product> getProductsList() {return productsList;}
 
@@ -84,9 +87,9 @@ public class DataDAO {
     }
 
     public Recipe getRecipeById(int id) {
-        for (int i = 0; i < recipesList.size(); i++) {
-            if(recipesList.get(i).getId() == id) {
-                return (Recipe)recipesList.get(i);
+        for (int i = 0; i < allRecipesList.size(); i++) {
+            if(allRecipesList.get(i).getId() == id) {
+                return (Recipe) allRecipesList.get(i);
             }
         }
         throw new NullPointerException("Null pointed to recipe");
@@ -107,6 +110,14 @@ public class DataDAO {
             if(ingredientsList.get(i).getRecipe().getId() == id) {
                 result.add(ingredientsList.get(i));
             }
+        }
+        return result;
+    }
+
+    public List<Recipe> getMatchingRecipes() {
+        List<Recipe> result = new ArrayList<>();
+        for (Map.Entry<Integer, Recipe> entry: matchingRecipes.entrySet()) {
+            result.add(entry.getValue());
         }
         return result;
     }
