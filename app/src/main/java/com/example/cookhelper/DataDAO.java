@@ -8,8 +8,14 @@ import com.example.cookhelper.entities.Recipe;
 import com.example.cookhelper.entities.Recipe_category;
 import com.example.cookhelper.entities.Step;
 import com.example.cookhelper.entities.User;
+import oracle.jdbc.driver.OracleDriver;
 
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,8 +42,27 @@ public class DataDAO {
         matchingRecipes = matcher.chooseBestMatches();
     }
 
+    public void testOracle() {
+        try {
+            //DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            Connection con = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:XE", "admin", "admin");
+            Statement stmt = con.createStatement();
+            System.out.println("Connection established!!!");
+            ResultSet rs = stmt.executeQuery("select * from USERS");
+            while (rs.next())
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+
+            con.close();
+        } catch (NoClassDefFoundError | ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void fetchData() {
-        User user= new User(1, "Artur", "artur.shab@yandex.ru", "artur233", "image",
+        User user = new User(1, "Artur", "artur.shab@yandex.ru", "artur233", "image",
                 "male", 70, 193);
         Recipe_category cat = new Recipe_category(1, "Fast food");
 
@@ -78,9 +103,13 @@ public class DataDAO {
         return historyList;
     }
 
-    public List<Recipe> getAllRecipesList() {return allRecipesList;}
+    public List<Recipe> getAllRecipesList() {
+        return allRecipesList;
+    }
 
-    public List<Product> getProductsList() {return productsList;}
+    public List<Product> getProductsList() {
+        return productsList;
+    }
 
     private void sortHistoryByDate() {
         Collections.sort(historyList, historyList.get(0).dateComparator());
@@ -88,7 +117,7 @@ public class DataDAO {
 
     public Recipe getRecipeById(int id) {
         for (int i = 0; i < allRecipesList.size(); i++) {
-            if(allRecipesList.get(i).getId() == id) {
+            if (allRecipesList.get(i).getId() == id) {
                 return (Recipe) allRecipesList.get(i);
             }
         }
@@ -97,8 +126,8 @@ public class DataDAO {
 
     public Product getProductById(int id) {
         for (int i = 0; i < productsList.size(); i++) {
-            if(productsList.get(i).getId() == id) {
-                return (Product)productsList.get(i);
+            if (productsList.get(i).getId() == id) {
+                return (Product) productsList.get(i);
             }
         }
         throw new NullPointerException("Null pointed to product");
@@ -107,7 +136,7 @@ public class DataDAO {
     public List<Ingredient> getIngredientsByRecipeId(int id) {
         List<Ingredient> result = new ArrayList<>();
         for (int i = 0; i < ingredientsList.size(); i++) {
-            if(ingredientsList.get(i).getRecipe().getId() == id) {
+            if (ingredientsList.get(i).getRecipe().getId() == id) {
                 result.add(ingredientsList.get(i));
             }
         }
@@ -116,7 +145,7 @@ public class DataDAO {
 
     public List<Recipe> getMatchingRecipes() {
         List<Recipe> result = new ArrayList<>();
-        for (Map.Entry<Integer, Recipe> entry: matchingRecipes.entrySet()) {
+        for (Map.Entry<Integer, Recipe> entry : matchingRecipes.entrySet()) {
             result.add(entry.getValue());
         }
         return result;

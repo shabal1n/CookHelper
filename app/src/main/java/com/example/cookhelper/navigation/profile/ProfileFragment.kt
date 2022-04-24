@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.cookhelper.R
 import com.example.cookhelper.Singleton
 import com.example.cookhelper.SplashActivity
@@ -87,7 +88,10 @@ class ProfileFragment : Fragment() {
                 profile_name.text = p1.getValue(User::class.java)!!.name
                 val imageUri = p1.getValue(User::class.java)!!.image.toUri()
                 photoAccountImageView.setImageURI(imageUri)
-                Picasso.get().load(imageUri).into(photoAccountImageView)
+//                Picasso.get().load(imageUri).into(photoAccountImageView)
+                Glide.with(view!!)
+                    .load(imageUri)
+                    .into(photoAccountImageView)
             }
         })
     }
